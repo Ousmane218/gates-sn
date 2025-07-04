@@ -11,7 +11,7 @@ const AboutSection = ({ lang }) => {
         },
         fr: {
             title: "À propos de Gates.sn",
-            text: "Gates.sn est votre boutique de confiance pour des montres et accessoires de qualité. Notre histoire est ancrée dans la passion du style et de l'authenticité.",
+            text: "Gates.sn est votre boutique de confiance pour des produits de qualité. Notre histoire est ancrée dans la passion du style et de l'authenticité.",
             image: "/logo.png"
         }
     };

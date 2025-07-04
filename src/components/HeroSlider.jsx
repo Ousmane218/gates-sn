@@ -28,7 +28,7 @@ const HeroSlider = ({ slides, lang }) => {
                 <h2 className="text-2xl md:text-4xl font-bold mb-2 drop-shadow-lg">{slide.text[lang]}</h2>
                 <a
                     href={slide.link}
-                    className="mt-4 bg-primary-red hover:bg-highlight-yellow text-white font-bold py-2 px-6 rounded transition-default shadow-lg"
+                    className="mt-4 bg-white hover:bg-highlight-yellow focus:bg-highlight-yellow text-dark-text font-bold py-2 px-6 rounded transition-default shadow-lg"
                 >
                     {slide.cta[lang]}
                 </a>

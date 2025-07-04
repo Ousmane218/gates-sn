@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import HeroSlider from './components/HeroSlider';
@@ -12,6 +12,20 @@ import ContactSection from './components/ContactSection';
 
 function App() {
   const [lang, setLang] = useState('en');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 800); // Simulate loading
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-light-bg z-50">
+        <div className="w-16 h-16 border-4 border-primary-red border-t-transparent border-solid rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   // Example slides for HeroSlider
   const slides = [
@@ -33,8 +47,8 @@ function App() {
   return (
     <div className="bg-light-bg min-h-screen">
       <Navigation lang={lang} setLang={setLang} />
-      <header id="hero" className="pt-16">
-        <div className="flex justify-center py-4">
+      <header id="hero" className="pt-4">
+        <div className="flex justify-center py-2">
           <Logo />
         </div>
         <HeroSlider slides={slides} lang={lang} />

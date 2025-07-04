@@ -44,15 +44,6 @@ const products = [
                 image: "/products/watches/white-arabic-numeral.jpg"
             },
 
-            {
-                name: "Soft Pink Arabic Numeral Watch",
-                description: {
-                    en: "Elegant soft pink watch with Arabic numerals and minimalist design, perfect for a modern look. Includes box and adjustment tool.",
-                    fr: "Montre rose pâle élégante avec chiffres arabes et design minimaliste, parfaite pour un look moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/soft-pink-arabic-numeral.jpg"
-            },
 
             {
                 name: "Light Blue Arabic Numeral Watch",
@@ -114,17 +105,16 @@ const products = [
                 price: "CFA 12000",
                 image: "/products/watches/fantasy-arabic-numeral.jpg"
             },
-
+            
             {
-                name: "Purple Minimalist Watch",
+                name: "Soft Pink Minimalist Watch",
                 description: {
-                    en: "Trendy purple minimalist watch with a sleek design, ideal for a bold statement.  Includes box and adjustment tool",
-                    fr: "Montre minimaliste violette tendance avec design épuré, idéale pour une touche audacieuse.Livrée avec boîte, pile offerte et outil d'ajustement."
+                    en: "Elegant soft pink watch with  minimalist design, perfect for a modern look. Includes box and adjustment tool.",
+                    fr: "Montre rose pâle élégante qvec un design minimaliste, parfaite pour un look moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/purple-minimalist.jpg"
+                image: "/products/watches/soft-pink-arabic-numeral.jpg"
             },
-            
 
             {
                 name: "Blue Minimalist Watch",
@@ -155,7 +145,15 @@ const products = [
                 image: "/products/watches/white-greek-numeral.jpg"
             },
 
-
+            {
+                name: "Purple Minimalist Watch",
+                description: {
+                    en: "Trendy purple minimalist watch with a sleek design, ideal for a bold statement.  Includes box and adjustment tool",
+                    fr: "Montre minimaliste violette tendance avec design épuré, idéale pour une touche audacieuse.Livrée avec boîte, pile offerte et outil d'ajustement."
+                },
+                price: "CFA 12000",
+                image: "/products/watches/purple-minimalist.jpg"
+            },
             {
                 name: "Pink Minimalist Watch",
                 description: {
