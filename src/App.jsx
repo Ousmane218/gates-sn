@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Logo from './components/Logo';
 import products from './data/products';
 import ContactSection from './components/ContactSection';
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [lang, setLang] = useState('en');
@@ -68,6 +69,7 @@ function App() {
         <ContactSection lang={lang} />
       </main>
       <Footer lang={lang} />
+      <Analytics />
     </div>
   );
 }

@@ -11,7 +11,7 @@ const ProductSection = ({ category, lang }) => {
     return (
         <section className="py-8">
             <h3 className="text-xl md:text-2xl font-bold mb-6 text-dark-text">{category.category}</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 w-full max-w-full px-1 overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-full px-1 overflow-hidden">
                 {category.items.map((item, idx) => (
                     <div key={idx} className="bg-white rounded-xl shadow p-0.5 sm:p-2 min-w-0 flex flex-col items-center border border-gray-200 transition-transform duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1 hover:scale-105 focus-within:shadow-2xl focus-within:-translate-y-1 focus-within:scale-105">
                         <img

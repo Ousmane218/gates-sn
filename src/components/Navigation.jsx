@@ -12,9 +12,9 @@ const Navigation = ({ lang, setLang }) => {
         { id: 'contact', en: 'Contact', fr: 'Contact' }
     ];
     return (
-        <nav className="sticky top-0 z-50 bg-white shadow px-2 sm:px-4 py-1 sm:py-2">
+        <nav className="sticky top-0 z-50 bg-transparent flex items-center justify-between px-0 sm:px-0 py-0 sm:py-0">
             <div className="flex items-center justify-between">
-                <div className="font-bold text-primary-red text-xl">Gates.sn</div>
+                <div className="font-bold text-primary-red text-2xl sm:text-3xl md:text-4xl">Gates.sn</div>
                 <div className="flex items-center gap-2">
                     <button
                         onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
