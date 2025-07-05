@@ -7,18 +7,36 @@ import AboutSection from './components/AboutSection';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import Logo from './components/Logo';
+import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
+import SearchResults from './components/SearchResults';
 import products from './data/products';
 import ContactSection from './components/ContactSection';
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState('fr');
   const [loading, setLoading] = useState(true);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 800); // Simulate loading
     return () => clearTimeout(timer);
   }, []);
+
+  const handleSearchResults = (results, query) => {
+    setSearchResults(results);
+    setSearchQuery(query);
+    setShowSearchResults(true);
+  };
+
+  const closeSearchResults = () => {
+    setShowSearchResults(false);
+    setSearchResults([]);
+    setSearchQuery('');
+  };
 
   if (loading) {
     return (
@@ -28,47 +46,49 @@ function App() {
     );
   }
 
-  // Example slides for HeroSlider
-  const slides = [
-    {
-      image: '/products/watches/watch-grid.jpg',
-      text: {
-        en: 'Discover Legendary Watches',
-        fr: 'Découvrez des montres légendaires'
-      },
-      cta: {
-        en: 'Shop Now',
-        fr: 'Acheter'
-      },
-      link: '#products'
-    }
-    // Add more slides as needed
-  ];
+
 
   return (
     <div className="bg-light-bg min-h-screen">
-      <Navigation lang={lang} setLang={setLang} />
-      <header id="hero" className="pt-4">
-        <div className="flex justify-center py-2">
-          <Logo />
+      <Navigation lang={lang} setLang={setLang} onSearchResults={handleSearchResults} />
+
+      {showSearchResults ? (
+        <div className="pt-20">
+          <SearchResults
+            results={searchResults}
+            query={searchQuery}
+            lang={lang}
+            onClose={closeSearchResults}
+          />
         </div>
-        <HeroSlider slides={slides} lang={lang} />
-      </header>
-      <main>
-        <section id="products">
-          {products.map((cat, idx) => (
-            <ProductSection key={idx} category={cat} lang={lang} />
-          ))}
-        </section>
-        <section id="about">
-          <AboutSection lang={lang} />
-        </section>
-        <section id="testimonials">
-          <Testimonials lang={lang} />
-        </section>
-        <ContactSection lang={lang} />
-      </main>
+      ) : (
+        <>
+          <header id="hero" className="pt-8 px-4">
+            <div className="flex justify-center py-8">
+              <Logo />
+            </div>
+            <HeroSlider lang={lang} />
+          </header>
+          <main className="relative">
+            <section id="products" className="relative">
+              {products.map((cat, idx) => (
+                <ProductSection key={idx} category={cat} lang={lang} />
+              ))}
+            </section>
+            <section id="about" className="relative">
+              <AboutSection lang={lang} />
+            </section>
+            <section id="testimonials" className="relative">
+              <Testimonials lang={lang} />
+            </section>
+            <ContactSection lang={lang} />
+          </main>
+        </>
+      )}
+
       <Footer lang={lang} />
+      <ScrollToTop />
+      <WhatsAppButton />
       <Analytics />
     </div>
   );

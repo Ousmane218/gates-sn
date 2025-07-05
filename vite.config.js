@@ -19,11 +19,15 @@ export default defineConfig({
     theme: {
       extend: {
         colors: {
-          background: '#111827',   // bg-gray-900
-          text: '#F9FAFB',         // text-gray-100
-          accent: '#D4AF37',       // Gold (custom)
-          secondary: '#1F2937',    // bg-gray-800
-          muted: '#6B7280',        // text-gray-500
+          // Luxury Gold & Black Theme
+          "primary-red": "#D4AF37",      // Deep Gold
+          "highlight-yellow": "#1A1A1A",  // Rich Black
+          "light-bg": "#FDFBF7",          // Cream
+          "dark-text": "#1A1A1A",         // Rich Black
+          "deep-green": "#F5E6D3",        // Champagne
+          "accent": "#B8860B",            // Darker Gold
+          "secondary": "#2D2D2D",         // Dark Gray
+          "muted": "#8B7355",             // Bronze
         },
       },
     },
