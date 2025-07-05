@@ -63,8 +63,8 @@ function App() {
         </div>
       ) : (
         <>
-          <header id="hero" className="pt-8 px-4">
-            <div className="flex justify-center py-8">
+          <header id="hero" className="pt-4 sm:pt-6 md:pt-8 px-2 sm:px-4">
+            <div className="flex justify-center py-4 sm:py-6 md:py-8">
               <Logo />
             </div>
             <HeroSlider lang={lang} />

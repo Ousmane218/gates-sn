@@ -3,7 +3,7 @@
 
 const products = [
     {
-        category: "Watches",
+        category: "Nos Montres",
         items: [
             {
                 name: {

@@ -8,8 +8,14 @@ body {
   max-width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 0.25rem;
   text-align: center;
+}
+
+@media (min-width: 475px) {
+  #root {
+    padding: 0.5rem;
+  }
 }
 
 @media (min-width: 640px) {
