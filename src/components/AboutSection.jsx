@@ -101,16 +101,12 @@ const AboutSection = ({ lang }) => {
     const data = content[lang];
 
     return (
-        <section id="about" className="py-16 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
-            <div className="max-w-6xl mx-auto">
+        <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-white">
+            <div className="w-full">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        {data.title}
-                    </h2>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        {data.subtitle}
-                    </p>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text mb-6">{content.title}</h2>
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">{content.subtitle}</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">

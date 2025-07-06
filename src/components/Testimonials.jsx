@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // Testimonials: enhanced user reviews with photos, ratings, and animations
 // Props: lang ("en" | "fr")
 const testimonials = [
-    
+
     {
         name: "Demba Soumare",
         rating: 5,
@@ -50,7 +50,7 @@ const testimonials = [
         },
         verified: true
     },
-    
+
     {
         name: "Aissatou Ba",
         rating: 5,
@@ -60,7 +60,7 @@ const testimonials = [
         },
         verified: true
     },
-    
+
 ];
 
 const Testimonials = ({ lang }) => {
@@ -74,14 +74,13 @@ const Testimonials = ({ lang }) => {
     }, []);
 
     return (
-        <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
-            <div className="max-w-6xl mx-auto">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+            <div className="w-full">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
                         {lang === 'fr' ? 'Ce que disent nos clients' : 'What Our Customers Say'}
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-gray-300 max-w-2xl mx-auto">
                         {lang === 'fr'
                             ? 'Découvrez pourquoi nos clients nous font confiance pour leurs accessoires de qualité'
                             : 'Discover why our customers trust us for their quality accessories'

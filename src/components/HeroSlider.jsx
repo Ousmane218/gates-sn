@@ -80,7 +80,7 @@ const HeroSlider = ({ lang }) => {
     const slide = slides[current];
 
     return (
-        <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[500px] overflow-hidden rounded-xl sm:rounded-2xl mx-2 sm:mx-4">
+        <div className="relative w-screen h-screen overflow-hidden">
             {/* Background Image */}
             <img
                 src={slide.image}

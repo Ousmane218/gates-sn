@@ -177,12 +177,12 @@ const products = [
             },
             {
                 name: {
-                    en: "White Greek Numeral Watch",
-                    fr: "Montre Blanche avec Chiffres Grecs"
+                    en: "White Minimalist Watch",
+                    fr: "Montre Blanche Minimaliste",
                 },
                 description: {
-                    en: "Elegant white watch with Greek numerals, minimalist design, includes box and adjustment tool.",
-                    fr: "Montre blanche élégante avec chiffres grecs, design minimaliste, livrée avec boîte et outil d'ajustement."
+                    en: "Minimalist light gray watch with a clean dial, ideal for everyday elegance. Includes box and adjustment tool.",
+                    fr: "Montre minimaliste blanche, livrée avec boîte et outil d'ajustement."
                 },
                 price: "CFA 12000",
                 image: "/products/watches/white-greek-numeral.jpg"

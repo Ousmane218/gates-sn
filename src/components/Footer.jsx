@@ -21,7 +21,7 @@ const Footer = ({ lang }) => {
             url: `https://wa.me/${phone}`,
             icon: (
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.52 3.48A12 12 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.15 1.6 5.97L0 24l6.22-1.63A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52z" />
+                    <path d="M20.52 3.48A12 12 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.15 1.6 5.97L0 24l6.22-1.63A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52z" />
                 </svg>
             ),
             color: 'hover:text-green-500'
@@ -59,7 +59,7 @@ const Footer = ({ lang }) => {
 
     return (
         <footer className="bg-gray-900 text-white">
-            <div className="max-w-6xl mx-auto px-4 py-12">
+            <div className="w-full py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Company Info */}
                     <div className="lg:col-span-2">

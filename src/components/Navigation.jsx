@@ -31,22 +31,22 @@ const Navigation = ({ lang, setLang, onSearchResults }) => {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg px-2 sm:px-4 py-2 sm:py-3">
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg py-2 sm:py-3">
+                <div className="w-full flex items-center justify-between">
                     <div className="font-bold text-primary-red text-xl sm:text-2xl md:text-3xl lg:text-4xl">Gates.sn</div>
 
                     {/* Search Button - Desktop */}
                     <div className="hidden md:flex flex-1 max-w-md mx-4 lg:mx-8">
                         <button
                             onClick={handleSearchClick}
-                            className="w-full relative px-3 sm:px-4 py-2 pl-10 sm:pl-12 pr-3 sm:pr-4 text-xs sm:text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-left text-gray-500 hover:border-gray-400 transition-all duration-200 flex items-center"
+                            className="w-full relative px-3 sm:px-4 py-2 pl-12 sm:pl-14 pr-3 sm:pr-4 text-xs sm:text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-left text-gray-500 hover:border-gray-400 transition-all duration-200 flex items-center"
                         >
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 flex items-center">
+                            <span className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 flex items-center">
                                 <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </span>
-                            <span className="ml-1 sm:ml-2 text-xs sm:text-sm">{lang === 'fr' ? 'Rechercher des montres, accessoires...' : 'Search watches, accessories...'}</span>
+                            <span className="pl-6 sm:pl-7 text-xs sm:text-sm">{lang === 'fr' ? 'Rechercher des montres, accessoires...' : 'Search watches, accessories...'}</span>
                         </button>
                     </div>
 
@@ -92,14 +92,14 @@ const Navigation = ({ lang, setLang, onSearchResults }) => {
                         <div className="mt-3 sm:mt-4 mb-3 sm:mb-4">
                             <button
                                 onClick={handleSearchClick}
-                                className="w-full relative px-3 sm:px-4 py-2 pl-10 sm:pl-12 pr-3 sm:pr-4 text-xs sm:text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-left text-gray-500 hover:border-gray-400 transition-all duration-200 flex items-center"
+                                className="w-full relative px-3 sm:px-4 py-2 pl-12 sm:pl-14 pr-3 sm:pr-4 text-xs sm:text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-left text-gray-500 hover:border-gray-400 transition-all duration-200 flex items-center"
                             >
-                                <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 flex items-center">
+                                <span className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 flex items-center">
                                     <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
                                 </span>
-                                <span className="ml-1 sm:ml-2 text-xs sm:text-sm">{lang === 'fr' ? 'Rechercher...' : 'Search...'}</span>
+                                <span className="pl-6 sm:pl-7 text-xs sm:text-sm">{lang === 'fr' ? 'Rechercher...' : 'Search...'}</span>
                             </button>
                         </div>
 

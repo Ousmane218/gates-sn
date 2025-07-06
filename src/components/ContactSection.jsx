@@ -84,11 +84,11 @@ const ContactSection = ({ lang }) => {
     };
 
     return (
-        <section id="contact" className="py-16 px-4 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.title}</h2>
-                    <p className="text-lg text-gray-600">{t.subtitle}</p>
+        <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-white">
+            <div className="w-full">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-dark-text mb-6">{t.title}</h2>
+                    <p className="text-xl text-gray-600">{t.subtitle}</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

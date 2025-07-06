@@ -10,8 +10,8 @@ const ProductSection = ({ category, lang }) => {
     if (!category || !category.items) return null;
 
     return (
-        <section className="py-8 sm:py-12 px-2 sm:px-4">
-            <div className="max-w-7xl mx-auto">
+        <section className="py-8 sm:py-12">
+            <div className="w-full">
                 <div className="text-center mb-8 sm:mb-12 animate-slide-up">
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-400 to-red-500 bg-[length:200%_200%] animate-gradient-x hover:scale-105 transition-transform duration-300 cursor-default">
                         {category.category}
@@ -19,7 +19,7 @@ const ProductSection = ({ category, lang }) => {
                     <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-red-500 to-yellow-400 mx-auto rounded-full animate-pulse-slow shadow-lg mt-4"></div>
                 </div>
 
-                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 w-full">
+                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-6 w-full">
                     {category.items.map((item, idx) => (
                         <div key={idx} className="group bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl p-3 sm:p-4 min-w-0 flex flex-col border border-gray-100 transition-all duration-500 ease-in-out hover:-translate-y-1 sm:hover:-translate-y-2 hover:scale-105">
                             {/* Image Container */}
