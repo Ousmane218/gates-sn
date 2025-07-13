@@ -82,7 +82,8 @@ const products = [
                     fr: "Montre à motif camouflage avec chiffres arabes, livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 15000",
-                image: "/products/watches/militar-arabic-numeral.jpg"
+                image: "/products/watches/militar-arabic-numeral.jpg",
+                outOfStock: true
             },
 
             {
@@ -147,7 +148,8 @@ const products = [
                     fr: "Montre rose pâle élégante qvec un design minimaliste, parfaite pour un look moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/soft-pink-arabic-numeral.jpg"
+                image: "/products/watches/soft-pink-arabic-numeral.jpg",
+                outOfStock: true
             },
 
             {
