@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useContactForm } from '../hooks/useContactForm';
 
 // ContactSection: WhatsApp info and functional contact form, bilingual
 // Props: lang ("en" | "fr")
 const ContactSection = ({ lang }) => {
     const phone = "221760162920";
-    const [formData, setFormData] = useState({
-        name: '',
-        message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null);
-
     const content = {
         en: {
             title: "Contact Us",
@@ -41,47 +35,8 @@ const ContactSection = ({ lang }) => {
             or: "Ou envoyez-nous un message :"
         }
     };
-
     const t = content[lang];
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!formData.name.trim() || !formData.message.trim()) {
-            setSubmitStatus('error');
-            return;
-        }
-
-        setIsSubmitting(true);
-        setSubmitStatus(null);
-
-        try {
-            // Simulate form submission (replace with actual API call)
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Create WhatsApp message
-            const message = `${lang === 'fr' ? 'Nouveau message de contact:' : 'New contact message:'}\n\n${lang === 'fr' ? 'Nom:' : 'Name:'} ${formData.name}\n${lang === 'fr' ? 'Message:' : 'Message:'} ${formData.message}`;
-
-            // Open WhatsApp with pre-filled message
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-
-            setSubmitStatus('success');
-            setFormData({ name: '', message: '' });
-        } catch {
-            setSubmitStatus('error');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    const { formData, isSubmitting, submitStatus, handleInputChange, handleSubmit } = useContactForm(lang);
 
     return (
         <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 to-white">

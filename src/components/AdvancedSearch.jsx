@@ -1,259 +1,27 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import products from '../data/products';
+import React from 'react';
+import { useAdvancedSearch } from '../hooks/useAdvancedSearch';
+import SearchSuggestions from './SearchSuggestions';
 
 const AdvancedSearch = ({ lang, onSearchResults }) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [suggestions, setSuggestions] = useState([]);
-    const [showSuggestions, setShowSuggestions] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [filters, setFilters] = useState({
-        priceRange: 'all',
-        category: 'all',
-        availability: 'all'
-    });
-    const [showFilters, setShowFilters] = useState(false);
-    const [correctedQuery, setCorrectedQuery] = useState('');
-
-    const searchRef = useRef(null);
-    const suggestionsRef = useRef(null);
-
-    // Flatten all products for search
-    const allProducts = useMemo(() => {
-        return products.flatMap(category =>
-            category.items.map(item => ({
-                ...item,
-                category: category.category,
-                categorySlug: category.category.toLowerCase().replace(/\s+/g, '-')
-            }))
-        );
-    }, []);
-
-    // Price ranges
-    const priceRanges = [
-        { value: 'all', label: { en: 'All Prices', fr: 'Tous les prix' } },
-        { value: '0-10000', label: { en: 'Under 10,000 CFA', fr: 'Moins de 10,000 CFA' } },
-        { value: '10000-15000', label: { en: '10,000 - 15,000 CFA', fr: '10,000 - 15,000 CFA' } },
-        { value: '15000+', label: { en: 'Over 15,000 CFA', fr: 'Plus de 15,000 CFA' } }
-    ];
-
-    // Categories
-    const categories = [
-        { value: 'all', label: { en: 'All Categories', fr: 'Toutes les catégories' } },
-        { value: 'watches', label: { en: 'Watches', fr: 'Montres' } }
-    ];
-
-    // Availability options
-    const availabilityOptions = [
-        { value: 'all', label: { en: 'All Items', fr: 'Tous les articles' } },
-        { value: 'in-stock', label: { en: 'In Stock', fr: 'En stock' } },
-        { value: 'new', label: { en: 'New Arrivals', fr: 'Nouveautés' } }
-    ];
-
-    // Simple spelling correction (common misspellings)
-    const spellingCorrections = {
-        'wath': 'watch',
-        'wacth': 'watch',
-        'montre': 'watch',
-        'montr': 'watch',
-        'arabic': 'arabic',
-        'greek': 'greek',
-        'minimalist': 'minimalist',
-        'automatic': 'automatic',
-        'black': 'black',
-        'white': 'white',
-        'blue': 'blue',
-        'pink': 'pink',
-        'purple': 'purple',
-        'green': 'green',
-        'gray': 'gray',
-        'grey': 'gray',
-        'camo': 'camo',
-        'transparent': 'transparent'
-    };
-
-    // Generate search suggestions
-    const generateSuggestions = (query) => {
-        if (!query.trim()) return [];
-
-        const correctedQuery = correctSpelling(query);
-        const searchTerms = correctedQuery.toLowerCase().split(' ');
-
-        const suggestions = allProducts
-            .map(product => {
-                const nameEn = product.name.en.toLowerCase();
-                const nameFr = product.name.fr.toLowerCase();
-                const descEn = product.description.en.toLowerCase();
-                const descFr = product.description.fr.toLowerCase();
-
-                let score = 0;
-                let matchedTerms = [];
-
-                searchTerms.forEach(term => {
-                    if (nameEn.includes(term) || nameFr.includes(term)) {
-                        score += 10;
-                        matchedTerms.push(term);
-                    }
-                    if (descEn.includes(term) || descFr.includes(term)) {
-                        score += 5;
-                        matchedTerms.push(term);
-                    }
-                    if (product.category.toLowerCase().includes(term)) {
-                        score += 3;
-                        matchedTerms.push(term);
-                    }
-                });
-
-                return {
-                    product,
-                    score,
-                    matchedTerms: [...new Set(matchedTerms)]
-                };
-            })
-            .filter(item => item.score > 0)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 8)
-            .map(item => ({
-                ...item.product,
-                matchedTerms: item.matchedTerms
-            }));
-
-        return suggestions;
-    };
-
-    // Simple spelling correction
-    const correctSpelling = (query) => {
-        const words = query.toLowerCase().split(' ');
-        const corrected = words.map(word => {
-            return spellingCorrections[word] || word;
-        });
-        return corrected.join(' ');
-    };
-
-    // Handle search input changes
-    const handleSearchChange = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-
-        if (value.trim()) {
-            const suggestions = generateSuggestions(value);
-            setSuggestions(suggestions);
-            setShowSuggestions(true);
-            setCorrectedQuery(correctSpelling(value));
-        } else {
-            setSuggestions([]);
-            setShowSuggestions(false);
-            setCorrectedQuery('');
-        }
-    };
-
-    // Perform search with filters
-    const performSearch = async (query = searchTerm) => {
-        setIsLoading(true);
-
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 300));
-
-        const correctedQuery = correctSpelling(query);
-        const searchTerms = correctedQuery.toLowerCase().split(' ');
-
-        let results = allProducts.map(product => {
-            const nameEn = product.name.en.toLowerCase();
-            const nameFr = product.name.fr.toLowerCase();
-            const descEn = product.description.en.toLowerCase();
-            const descFr = product.description.fr.toLowerCase();
-
-            let relevanceScore = 0;
-            let keywordMatches = [];
-
-            searchTerms.forEach(term => {
-                if (nameEn.includes(term) || nameFr.includes(term)) {
-                    relevanceScore += 10;
-                    keywordMatches.push(term);
-                }
-                if (descEn.includes(term) || descFr.includes(term)) {
-                    relevanceScore += 5;
-                    keywordMatches.push(term);
-                }
-                if (product.category.toLowerCase().includes(term)) {
-                    relevanceScore += 3;
-                    keywordMatches.push(term);
-                }
-            });
-
-            return {
-                ...product,
-                relevanceScore,
-                keywordMatches: [...new Set(keywordMatches)]
-            };
-        }).filter(item => item.relevanceScore > 0);
-
-        // Apply filters
-        if (filters.priceRange !== 'all') {
-            results = results.filter(product => {
-                const price = parseInt(product.price.replace(/\D/g, ''));
-                switch (filters.priceRange) {
-                    case '0-10000':
-                        return price < 10000;
-                    case '10000-15000':
-                        return price >= 10000 && price <= 15000;
-                    case '15000+':
-                        return price > 15000;
-                    default:
-                        return true;
-                }
-            });
-        }
-
-        if (filters.category !== 'all') {
-            results = results.filter(product =>
-                product.categorySlug === filters.category
-            );
-        }
-
-        // Sort by relevance
-        results.sort((a, b) => b.relevanceScore - a.relevanceScore);
-
-        setIsLoading(false);
-
-        if (onSearchResults) {
-            onSearchResults(results, correctedQuery);
-        }
-    };
-
-    // Handle suggestion selection
-    const handleSuggestionClick = (suggestion) => {
-        setSearchTerm(suggestion.name[lang]);
-        setShowSuggestions(false);
-        performSearch(suggestion.name[lang]);
-    };
-
-    // Handle search submission
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        setShowSuggestions(false);
-        performSearch();
-    };
-
-    // Handle filter changes
-    const handleFilterChange = (filterType, value) => {
-        setFilters(prev => ({
-            ...prev,
-            [filterType]: value
-        }));
-    };
-
-    // Close search on outside click
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (searchRef.current && !searchRef.current.contains(event.target) &&
-                suggestionsRef.current && !suggestionsRef.current.contains(event.target)) {
-                setShowSuggestions(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+    const {
+        searchTerm,
+        isLoading,
+        filters,
+        showFilters,
+        setShowFilters,
+        priceRanges,
+        categories,
+        availabilityOptions,
+        correctedQuery,
+        searchRef,
+        suggestionsRef,
+        suggestions,
+        showSuggestions,
+        handleSearchChange,
+        handleSuggestionClick,
+        handleSearchSubmit,
+        handleFilterChange
+    } = useAdvancedSearch({ lang, onSearchResults });
 
     return (
         <div className="relative w-full max-w-4xl mx-auto">
@@ -369,40 +137,13 @@ const AdvancedSearch = ({ lang, onSearchResults }) => {
             )}
 
             {/* Autocomplete Suggestions */}
-            {showSuggestions && suggestions.length > 0 && (
-                <div
-                    ref={suggestionsRef}
-                    className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto"
-                >
-                    {suggestions.map((suggestion, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handleSuggestionClick(suggestion)}
-                            className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none border-b border-gray-100 last:border-b-0"
-                        >
-                            <div className="flex items-center gap-3">
-                                <img
-                                    src={suggestion.image}
-                                    alt={suggestion.name[lang]}
-                                    className="w-12 h-12 object-cover rounded"
-                                />
-                                <div className="flex-1">
-                                    <div className="font-medium text-gray-900">
-                                        {suggestion.name[lang]}
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                        {suggestion.price}
-                                    </div>
-                                    {suggestion.matchedTerms && suggestion.matchedTerms.length > 0 && (
-                                        <div className="text-xs text-blue-600 mt-1">
-                                            {lang === 'fr' ? 'Correspondance:' : 'Matches:'} {suggestion.matchedTerms.join(', ')}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </button>
-                    ))}
-                </div>
+            {showSuggestions && (
+                <SearchSuggestions
+                    suggestions={suggestions}
+                    lang={lang}
+                    onSuggestionClick={handleSuggestionClick}
+                    suggestionsRef={suggestionsRef}
+                />
             )}
 
             {/* Spelling Correction Notice */}

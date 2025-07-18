@@ -13,6 +13,8 @@ import SearchResults from './components/SearchResults';
 import products from './data/products';
 import ContactSection from './components/ContactSection';
 import { Analytics } from "@vercel/analytics/react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProductDetail from './pages/ProductPage';
 
 function App() {
   const [lang, setLang] = useState('fr');
@@ -46,51 +48,57 @@ function App() {
     );
   }
 
-
-
   return (
-    <div className="bg-light-bg min-h-screen">
-      <Navigation lang={lang} setLang={setLang} onSearchResults={handleSearchResults} />
-
-      {showSearchResults ? (
-        <div className="pt-20">
-          <SearchResults
-            results={searchResults}
-            query={searchQuery}
-            lang={lang}
-            onClose={closeSearchResults}
+    <BrowserRouter>
+      <div className="bg-light-bg min-h-screen">
+        <Navigation lang={lang} setLang={setLang} onSearchResults={handleSearchResults} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              showSearchResults ? (
+                <div className="pt-20">
+                  <SearchResults
+                    results={searchResults}
+                    query={searchQuery}
+                    lang={lang}
+                    onClose={closeSearchResults}
+                  />
+                </div>
+              ) : (
+                <>
+                  <header id="hero" className="relative">
+                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+                      <Logo />
+                    </div>
+                    <HeroSlider lang={lang} />
+                  </header>
+                  <main className="relative">
+                    <section id="products" className="relative">
+                      {products.map((cat, idx) => (
+                        <ProductSection key={idx} category={cat} lang={lang} />
+                      ))}
+                    </section>
+                    <section id="about" className="relative">
+                      <AboutSection lang={lang} />
+                    </section>
+                    <section id="testimonials" className="relative">
+                      <Testimonials lang={lang} />
+                    </section>
+                    <ContactSection lang={lang} />
+                  </main>
+                </>
+              )
+            }
           />
-        </div>
-      ) : (
-        <>
-          <header id="hero" className="relative">
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
-              <Logo />
-            </div>
-            <HeroSlider lang={lang} />
-          </header>
-          <main className="relative">
-            <section id="products" className="relative">
-              {products.map((cat, idx) => (
-                <ProductSection key={idx} category={cat} lang={lang} />
-              ))}
-            </section>
-            <section id="about" className="relative">
-              <AboutSection lang={lang} />
-            </section>
-            <section id="testimonials" className="relative">
-              <Testimonials lang={lang} />
-            </section>
-            <ContactSection lang={lang} />
-          </main>
-        </>
-      )}
-
-      <Footer lang={lang} />
-      <ScrollToTop />
-      <WhatsAppButton />
-      <Analytics />
-    </div>
+          <Route path="/product/:slug" element={<ProductDetail />} />
+        </Routes>
+        <Footer lang={lang} />
+        <ScrollToTop />
+        <WhatsAppButton />
+        <Analytics />
+      </div>
+    </BrowserRouter>
   );
 }
 

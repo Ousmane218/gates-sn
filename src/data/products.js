@@ -15,7 +15,10 @@ const products = [
                     fr: "Montre noire élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/black-arabic-numeral.jpg"
+                image: "/products/watches/black-arabic-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
             {
                 name: {
@@ -27,7 +30,10 @@ const products = [
                     fr: "Montre noire élégante avec chiffres arabes argentés, livrée avec boîte et outil d'ajustement."
                 },
                 price: "CFA 15000",
-                image: "/products/watches/black-arabic-silver-numeral.jpg"
+                image: "/products/watches/black-arabic-silver-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -41,7 +47,9 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/black-automatic.jpg",
-                outOfStock: true
+                outOfStock: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -54,7 +62,10 @@ const products = [
                     fr: "Montre blanche moderne avec chiffres arabes, pile offerte, boîte et outil d'ajustement inclus."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/white-arabic-numeral.jpg"
+                image: "/products/watches/white-arabic-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
 
@@ -68,7 +79,10 @@ const products = [
                     fr: "Montre bleu clair avec chiffres arabes, parfaite pour un style frais et moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/light-blue-numeral-arabic.jpg"
+                image: "/products/watches/light-blue-numeral-arabic.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
 
@@ -83,7 +97,9 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/militar-arabic-numeral.jpg",
-                outOfStock: true
+                outOfStock: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -96,7 +112,10 @@ const products = [
                     fr: "Montre camouflage grise élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement pour un look moderne et robuste."
                 },
                 price: "CFA 15000",
-                image: "/products/watches/gray-camo-arabic-numeral.jpg"
+                image: "/products/watches/gray-camo-arabic-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -109,7 +128,10 @@ const products = [
                     fr: "Montre transparente moderne avec chiffres arabes, livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 15000",
-                image: "/products/watches/transparent-arabic-numeral.jpg"
+                image: "/products/watches/transparent-arabic-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -122,7 +144,10 @@ const products = [
                     fr: "Montre verte éclatante avec chiffres et aiguilles dorés arabes, parfaite pour un look unique et stylé. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 15000",
-                image: "/products/watches/green-arabic-numeral.jpg"
+                image: "/products/watches/green-arabic-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -135,7 +160,10 @@ const products = [
                     fr: "Montre marron avec chiffres arabes et motif shemagh unique, livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/fantasy-arabic-numeral.jpg"
+                image: "/products/watches/fantasy-arabic-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -149,7 +177,9 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/soft-pink-arabic-numeral.jpg",
-                outOfStock: true
+                outOfStock: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -162,7 +192,10 @@ const products = [
                     fr: "Montre minimaliste bleue moderne avec cadran épuré et bracelet assorti, parfaite pour un look audacieux. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/blue-grek-numeral.jpg"
+                image: "/products/watches/blue-grek-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -175,7 +208,10 @@ const products = [
                     fr: "Montre minimaliste gris clair avec cadran épuré, idéale pour une élégance quotidienne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/light-gray-numeral.jpg"
+                image: "/products/watches/light-gray-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
             {
                 name: {
@@ -187,7 +223,10 @@ const products = [
                     fr: "Montre minimaliste blanche, livrée avec boîte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/white-greek-numeral.jpg"
+                image: "/products/watches/white-greek-numeral.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             {
@@ -200,7 +239,10 @@ const products = [
                     fr: "Montre minimaliste violette tendance avec design épuré, idéale pour une touche audacieuse.Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/purple-minimalist.jpg"
+                image: "/products/watches/purple-minimalist.jpg",
+                promo: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
             {
                 name: {
@@ -212,7 +254,10 @@ const products = [
                     fr: "Montre minimaliste rose chic avec cadran épuré, parfaite pour un look moderne et féminin. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
                 price: "CFA 12000",
-                image: "/products/watches/pink-minimalist.jpg"
+                image: "/products/watches/pink-minimalist.jpg",
+                outOfStock: true,
+                material: "Résine",
+                waterResistance: "Étanche"
             },
 
             // Add more products here
