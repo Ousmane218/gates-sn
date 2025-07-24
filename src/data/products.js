@@ -32,6 +32,7 @@ const products = [
                 price: "CFA 15000",
                 image: "/products/watches/black-arabic-silver-numeral.jpg",
                 promo: true,
+                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -97,7 +98,6 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/militar-arabic-numeral.jpg",
-                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -114,6 +114,7 @@ const products = [
                 price: "CFA 15000",
                 image: "/products/watches/gray-camo-arabic-numeral.jpg",
                 promo: true,
+                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -130,6 +131,7 @@ const products = [
                 price: "CFA 15000",
                 image: "/products/watches/transparent-arabic-numeral.jpg",
                 promo: true,
+                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -177,7 +179,6 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/soft-pink-arabic-numeral.jpg",
-                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -241,6 +242,7 @@ const products = [
                 price: "CFA 12000",
                 image: "/products/watches/purple-minimalist.jpg",
                 promo: true,
+                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
