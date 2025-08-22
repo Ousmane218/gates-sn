@@ -16,7 +16,7 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/black-arabic-numeral.jpg",
-                promo: true,
+                
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -31,27 +31,11 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/black-arabic-silver-numeral.jpg",
-                promo: true,
-                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
 
-            {
-                name: {
-                    en: "Black Automatic Watch",
-                    fr: "Montre Automatique Noire"
-                },
-                description: {
-                    en: "Elegant black automatic watch, includes box and adjustment tool.",
-                    fr: "Montre automatique noire élégante , livrée avec boîte et outil d'ajustement."
-                },
-                price: "CFA 15000",
-                image: "/products/watches/black-automatic.jpg",
-                outOfStock: true,
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
+          
 
             {
                 name: {
@@ -64,7 +48,6 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/white-arabic-numeral.jpg",
-                promo: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -81,7 +64,6 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/light-blue-numeral-arabic.jpg",
-                promo: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -113,8 +95,6 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/gray-camo-arabic-numeral.jpg",
-                promo: true,
-                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -130,8 +110,6 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/transparent-arabic-numeral.jpg",
-                promo: true,
-                outOfStock: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -147,7 +125,6 @@ const products = [
                 },
                 price: "CFA 15000",
                 image: "/products/watches/green-arabic-numeral.jpg",
-                promo: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -163,7 +140,6 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/fantasy-arabic-numeral.jpg",
-                promo: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -194,7 +170,6 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/blue-grek-numeral.jpg",
-                promo: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
@@ -210,57 +185,12 @@ const products = [
                 },
                 price: "CFA 12000",
                 image: "/products/watches/light-gray-numeral.jpg",
-                promo: true,
                 material: "Résine",
                 waterResistance: "Étanche"
             },
-            {
-                name: {
-                    en: "White Minimalist Watch",
-                    fr: "Montre Blanche Minimaliste",
-                },
-                description: {
-                    en: "Minimalist light gray watch with a clean dial, ideal for everyday elegance. Includes box and adjustment tool.",
-                    fr: "Montre minimaliste blanche, livrée avec boîte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/white-greek-numeral.jpg",
-                promo: true,
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
+           
 
-            {
-                name: {
-                    en: "Purple Minimalist Watch",
-                    fr: "Montre Violette Minimaliste"
-                },
-                description: {
-                    en: "Trendy purple minimalist watch with a sleek design, ideal for a bold statement.  Includes box and adjustment tool",
-                    fr: "Montre minimaliste violette tendance avec design épuré, idéale pour une touche audacieuse.Livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/purple-minimalist.jpg",
-                promo: true,
-                outOfStock: true,
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
-            {
-                name: {
-                    en: "Pink Minimalist Watch",
-                    fr: "Montre Rose Minimaliste"
-                },
-                description: {
-                    en: "Chic pink minimalist watch with a clean dial, perfect for a modern and feminine look. Includes box and adjustment tool.",
-                    fr: "Montre minimaliste rose chic avec cadran épuré, parfaite pour un look moderne et féminin. Livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/pink-minimalist.jpg",
-                outOfStock: true,
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
+           
 
             // Add more products here
         ]

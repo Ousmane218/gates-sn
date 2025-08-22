@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom';
 const getSlug = (name) => name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
 // Helper to determine sale price and promo status
-function getPriceInfo(priceString) {
+function getPriceInfo(priceString, promo) {
     // Extract numeric value
     const match = priceString.match(/(\d+)/g);
     if (!match) return { original: priceString, discounted: null, isOnSale: false };
     const price = parseInt(match.join(''), 10);
     let discounted = null;
-    if (price === 15000) discounted = 12000;
-    if (price === 12000) discounted = 10000;
+    if (promo) {
+        if (price === 15000) discounted = 12000;
+        if (price === 12000) discounted = 10000;
+    }
     return {
         original: price,
         discounted,
@@ -25,7 +27,7 @@ function formatPrice(price) {
 
 const ProductCard = ({ item, lang, phone }) => {
     const slug = getSlug(item.name[lang]);
-    const { original, discounted, isOnSale } = getPriceInfo(item.price);
+    const { original, discounted, isOnSale } = getPriceInfo(item.price, item.promo);
     return (
         <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 flex flex-col items-center w-full max-w-xs mx-auto">
             {/* Out of stock badge */}
