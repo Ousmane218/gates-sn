@@ -29,7 +29,7 @@ const products = [
                     en: "Elegant black watch with silver Arabic numerals, includes box and adjustment tool.",
                     fr: "Montre noire élégante avec chiffres arabes argentés, livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 15000",
+                price: "CFA 12000",
                 image: "/products/watches/black-arabic-silver-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -78,7 +78,7 @@ const products = [
                     en: "Unique camo-patterned watch with Arabic numerals, includes box, gift battery, and adjustment tool.",
                     fr: "Montre à motif camouflage avec chiffres arabes, livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 15000",
+                price: "CFA 12000",
                 image: "/products/watches/militar-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -93,7 +93,7 @@ const products = [
                     en: "Stylish gray camo watch with Arabic numerals, includes box and adjustment tool for a modern rugged look.",
                     fr: "Montre camouflage grise élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement pour un look moderne et robuste."
                 },
-                price: "CFA 15000",
+                price: "CFA 12000",
                 image: "/products/watches/gray-camo-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -108,7 +108,7 @@ const products = [
                     en: "Modern transparent watch with Arabic numerals, includes box, gift battery, and adjustment tool.",
                     fr: "Montre transparente moderne avec chiffres arabes, livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 15000",
+                price: "CFA 12000",
                 image: "/products/watches/transparent-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -123,7 +123,7 @@ const products = [
                     en: "Vibrant green watch with gold Arabic numerals and hands, perfect for a unique and stylish look. Includes box and adjustment tool.",
                     fr: "Montre verte éclatante avec chiffres et aiguilles dorés arabes, parfaite pour un look unique et stylé. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 15000",
+                price: "CFA 12000",
                 image: "/products/watches/green-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -138,7 +138,7 @@ const products = [
                     en: "Brown watch with Arabic numerals and unique shemagh design, includes box, gift battery, and adjustment tool.",
                     fr: "Montre marron avec chiffres arabes et motif shemagh unique, livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 12000",
+                price: "CFA 10000",
                 image: "/products/watches/fantasy-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -174,20 +174,7 @@ const products = [
                 waterResistance: "Étanche"
             },
 
-            {
-                name: {
-                    en: "Light Gray Minimalist Watch",
-                    fr: "Montre Gris Clair Minimaliste"
-                },
-                description: {
-                    en: "Minimalist light gray watch with a clean dial, ideal for everyday elegance. Includes box and adjustment tool.",
-                    fr: "Montre minimaliste gris clair avec cadran épuré, idéale pour une élégance quotidienne. Livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/light-gray-numeral.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
+           
            
 
            
