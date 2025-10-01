@@ -45,7 +45,9 @@ export function useAdvancedSearch({ lang, onSearchResults }) {
 
     const categories = [
         { value: 'all', label: { en: 'All Categories', fr: 'Toutes les catégories' } },
-        { value: 'watches', label: { en: 'Watches', fr: 'Montres' } }
+        { value: 'nos-montres-premium', label: { en: 'Premium Watches', fr: 'Montres Premium' } },
+        { value: 'nos-montres', label: { en: 'Watches', fr: 'Montres' } },
+        { value: 'nos-chapeaux', label: { en: 'Hats', fr: 'Chapeaux' } }
     ];
 
     const availabilityOptions = [
