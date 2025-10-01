@@ -52,6 +52,36 @@ const products = [
     {
         category: "Nos Montres",
         items: [
+
+            {
+                name: {
+                    en: "Black Multifunctional Dial Arabic Watch",
+                    fr: "Montre Noire Multifonction avec Cadran Arabe"
+                },
+                description: {
+                    en: "Advanced black watch with multifunctional dial featuring Arabic numerals and multiple time zones. Perfect for professionals who need precise timekeeping with additional features. Includes box and adjustment tool.",
+                    fr: "Montre noire avancée avec cadran multifonction présentant des chiffres arabes et plusieurs fuseaux horaires. Parfaite pour les professionnels qui ont besoin d'une chronométrie précise avec des fonctionnalités supplémentaires. Livrée avec boîte et outil d'ajustement."
+                },
+                price: "CFA 12000",
+                image: "/products/watches/black_multifunctinial_dial_arabic.jpg",
+                material: "Résine",
+                waterResistance: "Étanche"
+            },
+            // Nos Montres
+            {
+                name: {
+                    en: "Black Automatic Watch",
+                    fr: "Montre Automatique Noire"
+                },
+                description: {
+                    en: "Elegant black automatic watch with self-winding movement. Features a sophisticated design with automatic timekeeping mechanism, perfect for those who appreciate traditional watch craftsmanship.",
+                    fr: "Montre automatique noire élégante avec mouvement à remontage automatique. Présente un design sophistiqué avec mécanisme de chronométrage automatique, parfaite pour ceux qui apprécient l'artisanat horloger traditionnel."
+                },
+                price: "CFA 12000",
+                image: "/products/watches/black-automatic.jpg",
+                material: "Résine",
+                waterResistance: "Étanche"
+            },
             {
                 name: {
                     en: "Black Arabic Numeral Watch",
@@ -116,80 +146,7 @@ const products = [
             },
 
 
-            {
-                name: {
-                    en: "Camo Arabic Numeral Watch",
-                    fr: "Montre Camouflage avec Chiffres Arabes"
-                },
-                description: {
-                    en: "Unique camo-patterned watch with Arabic numerals, includes box, gift battery, and adjustment tool.",
-                    fr: "Montre à motif camouflage avec chiffres arabes, livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/militar-arabic-numeral.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
-
-            {
-                name: {
-                    en: "Gray Camo Arabic Numeral Watch",
-                    fr: "Montre Camouflage Grise avec Chiffres Arabes"
-                },
-                description: {
-                    en: "Stylish gray camo watch with Arabic numerals, includes box and adjustment tool for a modern rugged look.",
-                    fr: "Montre camouflage grise élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement pour un look moderne et robuste."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/gray-camo-arabic-numeral.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
-
-            {
-                name: {
-                    en: "Transparent Arabic Numeral Watch",
-                    fr: "Montre Transparente avec Chiffres Arabes"
-                },
-                description: {
-                    en: "Modern transparent watch with Arabic numerals, includes box, gift battery, and adjustment tool.",
-                    fr: "Montre transparente moderne avec chiffres arabes, livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/transparent-arabic-numeral.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
-
-            {
-                name: {
-                    en: "Green Arabic Numeral Watch",
-                    fr: "Montre Verte avec Chiffres Arabes"
-                },
-                description: {
-                    en: "Vibrant green watch with gold Arabic numerals and hands, perfect for a unique and stylish look. Includes box and adjustment tool.",
-                    fr: "Montre verte éclatante avec chiffres et aiguilles dorés arabes, parfaite pour un look unique et stylé. Livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 12000",
-                image: "/products/watches/green-arabic-numeral.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
-
-            {
-                name: {
-                    en: "Brown Shemagh Arabic Watch",
-                    fr: "Montre Marron Shemagh avec Chiffres Arabes"
-                },
-                description: {
-                    en: "Brown watch with Arabic numerals and unique shemagh design, includes box, gift battery, and adjustment tool.",
-                    fr: "Montre marron avec chiffres arabes et motif shemagh unique, livrée avec boîte, pile offerte et outil d'ajustement."
-                },
-                price: "CFA 10000",
-                image: "/products/watches/fantasy-arabic-numeral.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
+           
 
             {
                 name: {
@@ -223,28 +180,10 @@ const products = [
 
 
 
-
-
-
             {
                 name: {
-                    en: "Black Automatic Watch",
-                    fr: "Montre Automatique Noire"
-                },
-                description: {
-                    en: "Elegant black automatic watch with self-winding movement. Features a sophisticated design with automatic timekeeping mechanism, perfect for those who appreciate traditional watch craftsmanship.",
-                    fr: "Montre automatique noire élégante avec mouvement à remontage automatique. Présente un design sophistiqué avec mécanisme de chronométrage automatique, parfaite pour ceux qui apprécient l'artisanat horloger traditionnel."
-                },
-                price: "CFA 15000",
-                image: "/products/watches/black-automatic.jpg",
-                material: "Résine",
-                waterResistance: "Étanche"
-            },
-
-            {
-                name: {
-                    en: "Light Gray Numeral Watch",
-                    fr: "Montre Gris Clair avec Chiffres"
+                    en: "Light Gray Minimalist Watch",
+                    fr: "Montre Gris Clair Minimaliste"
                 },
                 description: {
                     en: "Modern light gray watch with clear numerals and elegant design. Perfect for a subtle and sophisticated look. Includes box and adjustment tool.",
@@ -255,21 +194,37 @@ const products = [
                 material: "Résine",
                 waterResistance: "Étanche"
             },
+            {
+                name: {
+                    en: "Green Arabic Numeral Watch",
+                    fr: "Montre Verte avec Chiffres Arabes"
+                },
+                description: {
+                    en: "Vibrant green watch with gold Arabic numerals and hands, perfect for a unique and stylish look. Includes box and adjustment tool.",
+                    fr: "Montre verte éclatante avec chiffres et aiguilles dorés arabes, parfaite pour un look unique et stylé. Livrée avec boîte, pile offerte et outil d'ajustement."
+                },
+                price: "CFA 10000",
+                image: "/products/watches/green-arabic-numeral.jpg",
+                material: "Résine",
+                waterResistance: "Étanche"
+            },
 
             {
                 name: {
-                    en: "Black Multifunctional Dial Arabic Watch",
-                    fr: "Montre Noire Multifonction avec Cadran Arabe"
+                    en: "Gray Camo Arabic Numeral Watch",
+                    fr: "Montre Camouflage Grise avec Chiffres Arabes"
                 },
                 description: {
-                    en: "Advanced black watch with multifunctional dial featuring Arabic numerals and multiple time zones. Perfect for professionals who need precise timekeeping with additional features. Includes box and adjustment tool.",
-                    fr: "Montre noire avancée avec cadran multifonction présentant des chiffres arabes et plusieurs fuseaux horaires. Parfaite pour les professionnels qui ont besoin d'une chronométrie précise avec des fonctionnalités supplémentaires. Livrée avec boîte et outil d'ajustement."
+                    en: "Stylish gray camo watch with Arabic numerals, includes box and adjustment tool for a modern rugged look.",
+                    fr: "Montre camouflage grise élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement pour un look moderne et robuste."
                 },
-                price: "CFA 15000",
-                image: "/products/watches/black_multifunctinial_dial_arabic.jpg",
+                price: "CFA 10000",
+                image: "/products/watches/gray-camo-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
-            }
+            },
+
+           
 
             // Add more products here
         ]
