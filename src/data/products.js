@@ -91,7 +91,7 @@ const products = [
                     en: "Sleek all-black watch with Arabic numerals, includes box and adjustment tool.",
                     fr: "Montre noire élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 12000",
+                price: "CFA 10000",
                 image: "/products/watches/black-arabic-numeral.jpg",
 
                 material: "Résine",
@@ -106,7 +106,7 @@ const products = [
                     en: "Elegant black watch with silver Arabic numerals, includes box and adjustment tool.",
                     fr: "Montre noire élégante avec chiffres arabes argentés, livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 12000",
+                price: "CFA 10000",
                 image: "/products/watches/black-arabic-silver-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -123,7 +123,7 @@ const products = [
                     en: "Modern white watch with Arabic numerals, gift battery, box, and adjustment tool included.",
                     fr: "Montre blanche moderne avec chiffres arabes, pile offerte, boîte et outil d'ajustement inclus."
                 },
-                price: "CFA 12000",
+                price: "CFA 10000",
                 image: "/products/watches/white-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -139,7 +139,7 @@ const products = [
                     en: "Fresh light blue watch with Arabic numerals, perfect for a cool and modern style. Includes box and adjustment tool.",
                     fr: "Montre bleu clair avec chiffres arabes, parfaite pour un style frais et moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 12000",
+                price: "CFA 10000",
                 image: "/products/watches/light-blue-numeral-arabic.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -157,7 +157,7 @@ const products = [
                     en: "Elegant soft pink watch with  minimalist design, perfect for a modern look. Includes box and adjustment tool.",
                     fr: "Montre rose pâle élégante qvec un design minimaliste, parfaite pour un look moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 12000",
+                price: "CFA 10000",
                 image: "/products/watches/soft-pink-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -172,7 +172,7 @@ const products = [
                     en: "Modern blue minimalist watch with a clean dial and matching strap, perfect for a bold look. Includes box and adjustment tool.",
                     fr: "Montre minimaliste bleue moderne avec cadran épuré et bracelet assorti, parfaite pour un look audacieux. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 12000",
+                price: "CFA 9000",
                 image: "/products/watches/blue-grek-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
