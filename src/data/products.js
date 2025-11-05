@@ -62,7 +62,7 @@ const products = [
                     en: "Advanced black watch with chronograph dial featuring Arabic numerals and multiple time zones. Perfect for professionals who need precise timekeeping with additional features. Includes box and adjustment tool.",
                     fr: "Montre noire avancée avec cadran chronographe présentant des chiffres arabes et plusieurs fuseaux horaires. Parfaite pour les professionnels qui ont besoin d'une chronométrie précise avec des fonctionnalités supplémentaires. Livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 10000",
+                price: "CFA 7000",
                 image: "/products/watches/black_multifunctinial_dial_arabic.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
