@@ -14,7 +14,7 @@ const products = [
                     en: "High-quality stainless steel watch with Arabic numerals. Premium construction with superior durability and elegant black finish. Perfect for professional and formal occasions.",
                     fr: "Montre en acier inoxydable de haute qualité avec chiffres arabes. Construction premium avec durabilité supérieure et finition noire élégante. Parfaite pour les occasions professionnelles et formelles."
                 },
-                price: "CFA 15000",
+                price: "CFA 10000",
                 image: "/products/watches/black_arabic_stainless.jpg",
                 material: "Acier inoxydable",
                 waterResistance: "Étanche 100m"
@@ -28,7 +28,7 @@ const products = [
                     en: "Luxury stainless steel watch with black case and silver Arabic numerals. High-end materials and precision engineering for the discerning customer who values quality and style.",
                     fr: "Montre de luxe en acier inoxydable avec boîtier noir et chiffres arabes argentés. Matériaux haut de gamme et ingénierie de précision pour le client exigeant qui valorise la qualité et le style."
                 },
-                price: "CFA 15000",
+                price: "CFA 10000",
                 image: "/products/watches/black_silver_arabic_stainless.jpg",
                 material: "Acier inoxydable",
                 waterResistance: "Étanche 100m"
@@ -42,7 +42,7 @@ const products = [
                     en: "Elegant silver stainless steel watch with Arabic numerals. Sophisticated design with premium materials and superior craftsmanship. A timeless piece for the modern professional.",
                     fr: "Montre élégante en acier inoxydable argenté avec chiffres arabes. Design sophistiqué avec matériaux premium et savoir-faire supérieur. Une pièce intemporelle pour le professionnel moderne."
                 },
-                price: "CFA 15000",
+                price: "CFA 10000",
                 image: "/products/watches/silver_arabic_stainless.jpg",
                 material: "Acier inoxydable",
                 waterResistance: "Étanche 100m"
@@ -55,12 +55,12 @@ const products = [
 
             {
                 name: {
-                    en: "Black Multifunctional Dial Arabic Watch",
-                    fr: "Montre Noire Multifonction avec Cadran Arabe"
+                    en: "Black Chronograph Dial Arabic Watch",
+                    fr: "Montre Noire Chronographe avec Cadran Arabe"
                 },
                 description: {
-                    en: "Advanced black watch with multifunctional dial featuring Arabic numerals and multiple time zones. Perfect for professionals who need precise timekeeping with additional features. Includes box and adjustment tool.",
-                    fr: "Montre noire avancée avec cadran multifonction présentant des chiffres arabes et plusieurs fuseaux horaires. Parfaite pour les professionnels qui ont besoin d'une chronométrie précise avec des fonctionnalités supplémentaires. Livrée avec boîte et outil d'ajustement."
+                    en: "Advanced black watch with chronograph dial featuring Arabic numerals and multiple time zones. Perfect for professionals who need precise timekeeping with additional features. Includes box and adjustment tool.",
+                    fr: "Montre noire avancée avec cadran chronographe présentant des chiffres arabes et plusieurs fuseaux horaires. Parfaite pour les professionnels qui ont besoin d'une chronométrie précise avec des fonctionnalités supplémentaires. Livrée avec boîte et outil d'ajustement."
                 },
                 price: "CFA 10000",
                 image: "/products/watches/black_multifunctinial_dial_arabic.jpg",
@@ -77,7 +77,7 @@ const products = [
                     en: "Elegant black automatic watch with self-winding movement. Features a sophisticated design with automatic timekeeping mechanism, perfect for those who appreciate traditional watch craftsmanship.",
                     fr: "Montre automatique noire élégante avec mouvement à remontage automatique. Présente un design sophistiqué avec mécanisme de chronométrage automatique, parfaite pour ceux qui apprécient l'artisanat horloger traditionnel."
                 },
-                price: "CFA 10000",
+                price: "CFA 7000",
                 image: "/products/watches/black-automatic.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -91,7 +91,7 @@ const products = [
                     en: "Sleek all-black watch with Arabic numerals, includes box and adjustment tool.",
                     fr: "Montre noire élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 8000",
+                price: "CFA 7000",
                 image: "/products/watches/black-arabic-numeral.jpg",
 
                 material: "Résine",
@@ -106,7 +106,7 @@ const products = [
                     en: "Elegant black watch with silver Arabic numerals, includes box and adjustment tool.",
                     fr: "Montre noire élégante avec chiffres arabes argentés, livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 8000",
+                price: "CFA 7000",
                 image: "/products/watches/black-arabic-silver-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -123,7 +123,7 @@ const products = [
                     en: "Modern white watch with Arabic numerals, gift battery, box, and adjustment tool included.",
                     fr: "Montre blanche moderne avec chiffres arabes, pile offerte, boîte et outil d'ajustement inclus."
                 },
-                price: "CFA 8000",
+                price: "CFA 7000",
                 image: "/products/watches/white-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -139,7 +139,7 @@ const products = [
                     en: "Fresh light blue watch with Arabic numerals, perfect for a cool and modern style. Includes box and adjustment tool.",
                     fr: "Montre bleu clair avec chiffres arabes, parfaite pour un style frais et moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 8000",
+                price: "CFA 7000",
                 image: "/products/watches/light-blue-numeral-arabic.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -157,7 +157,7 @@ const products = [
                     en: "Elegant soft pink watch with  minimalist design, perfect for a modern look. Includes box and adjustment tool.",
                     fr: "Montre rose pâle élégante qvec un design minimaliste, parfaite pour un look moderne. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 8000",
+                price: "CFA 5000",
                 image: "/products/watches/soft-pink-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -172,7 +172,7 @@ const products = [
                     en: "Modern blue minimalist watch with a clean dial and matching strap, perfect for a bold look. Includes box and adjustment tool.",
                     fr: "Montre minimaliste bleue moderne avec cadran épuré et bracelet assorti, parfaite pour un look audacieux. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 7000",
+                price: "CFA 5000",
                 image: "/products/watches/blue-grek-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -189,7 +189,7 @@ const products = [
                     en: "Modern light gray watch with clear numerals and elegant design. Perfect for a subtle and sophisticated look. Includes box and adjustment tool.",
                     fr: "Montre gris clair moderne avec chiffres clairs et design élégant. Parfaite pour un look subtil et sophistiqué. Livrée avec boîte et outil d'ajustement."
                 },
-                price: "CFA 7000",
+                price: "CFA 5000",
                 image: "/products/watches/light-gray-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -203,7 +203,7 @@ const products = [
                     en: "Vibrant green watch with gold Arabic numerals and hands, perfect for a unique and stylish look. Includes box and adjustment tool.",
                     fr: "Montre verte éclatante avec chiffres et aiguilles dorés arabes, parfaite pour un look unique et stylé. Livrée avec boîte, pile offerte et outil d'ajustement."
                 },
-                price: "CFA 8000",
+                price: "CFA 5000",
                 image: "/products/watches/green-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
@@ -218,7 +218,7 @@ const products = [
                     en: "Stylish gray camo watch with Arabic numerals, includes box and adjustment tool for a modern rugged look.",
                     fr: "Montre camouflage grise élégante avec chiffres arabes, livrée avec boîte et outil d'ajustement pour un look moderne et robuste."
                 },
-                price: "CFA 8000",
+                price: "CFA 7000",
                 image: "/products/watches/gray-camo-arabic-numeral.jpg",
                 material: "Résine",
                 waterResistance: "Étanche"
