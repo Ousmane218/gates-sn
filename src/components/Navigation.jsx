@@ -1,193 +1,102 @@
-import React, { useState } from 'react';
-import AdvancedSearch from './AdvancedSearch';
-import { useSearchModal } from '../hooks/useSearchModal';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { Menu, X, ShoppingBag, ChevronDown } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
-// Navigation: sticky topbar with language toggle and anchor links
-// Props: lang ("en" | "fr"), setLang (function)
-const Navigation = ({ lang, setLang, onSearchResults }) => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const { showSearchModal, openSearchModal, closeSearchModal } = useSearchModal();
-    const location = useLocation();
-    const navigate = useNavigate();
+const Navigation = () => {
+    const [isOpen, setIsOpen] = useState(false)
+    const [isShopOpen, setIsShopOpen] = useState(false)
+    const { cart } = useCart()
+    const location = useLocation()
 
-    const links = [
-        { id: 'hero', en: 'Home', fr: 'Accueil' },
-        { id: 'products', en: 'Products', fr: 'Produits' },
-        { id: 'about', en: 'About', fr: 'À propos' },
-        { id: 'testimonials', en: 'Testimonials', fr: 'Témoignages' },
-        { id: 'contact', en: 'Contact', fr: 'Contact' }
-    ];
-
-    // Scroll to section after navigation
-    const handleSectionNav = (sectionId) => (e) => {
-        e.preventDefault();
-        if (location.pathname !== '/') {
-            navigate('/', { replace: false });
-            // Wait for navigation, then scroll
-            setTimeout(() => {
-                const el = document.getElementById(sectionId);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        } else {
-            const el = document.getElementById(sectionId);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-        setMenuOpen(false);
-    };
-
-    const handleSearchResults = (results, query) => {
-        closeSearchModal();
-        if (onSearchResults) {
-            onSearchResults(results, query);
-        }
-        document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
-    };
+    const cartItemCount = cart.reduce((acc, item) => acc + item.quantity, 0)
+    const isHome = location.pathname === '/'
 
     return (
-        <>
-            <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg py-2 sm:py-3">
-                <div className="w-full flex items-center justify-between">
-                    <div className="font-bold text-primary-red text-xl sm:text-2xl md:text-3xl lg:text-4xl">Gates.sn</div>
+        <nav className="bg-white sticky top-0 z-50 border-b border-gray-100">
+            <div className="container mx-auto px-4">
+                <div className="flex justify-between items-center h-20">
 
-                    {/* Search Button - Desktop */}
-                    <div className="hidden md:flex flex-1 max-w-md mx-4 lg:mx-8">
-                        <button
-                            onClick={openSearchModal}
-                            className="w-full relative px-3 sm:px-4 py-2 pl-12 sm:pl-14 pr-3 sm:pr-4 text-xs sm:text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-left text-gray-500 hover:border-gray-400 transition-all duration-200 flex items-center"
-                        >
-                            <span className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 flex items-center">
-                                <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </span>
-                            <span className="pl-6 sm:pl-7 text-xs sm:text-sm">{lang === 'fr' ? 'Rechercher des montres, chapeaux, accessoires...' : 'Search watches, hats, accessories...'}</span>
-                        </button>
-                    </div>
+                    {/* 1. Logo - Centered on mobile, Left on Desktop */}
+                    <Link to="/" className="text-2xl md:text-3xl font-extrabold tracking-tighter">
+                        GATES<span className="text-blue-600">.</span>SN
+                    </Link>
 
-                    <div className="flex items-center gap-2 sm:gap-3">
-                        {/* Desktop Navigation */}
-                        <div className="hidden lg:flex gap-4 xl:gap-6 items-center">
-                            {links.map(link => (
-                                link.id === 'hero' ? (
-                                    <Link
-                                        key={link.id}
-                                        to="/"
-                                        className="text-gray-700 hover:text-primary-red transition-all duration-300 font-medium px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-50 text-sm sm:text-base"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        {link[lang]}
-                                    </Link>
-                                ) : (
-                                    <a
-                                        key={link.id}
-                                        href={`#${link.id}`}
-                                        className="text-gray-700 hover:text-primary-red transition-all duration-300 font-medium px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-50 text-sm sm:text-base"
-                                        onClick={handleSectionNav(link.id)}
-                                    >
-                                        {link[lang]}
-                                    </a>
-                                )
-                            ))}
-                        </div>
+                    {/* 2. Desktop Menu - Clean & Centered */}
+                    <div className="hidden md:flex items-center space-x-8 text-sm font-bold uppercase tracking-widest">
+                        <Link to="/" className="hover:text-blue-600 transition">Accueil</Link>
 
-                        {/* Language Toggle */}
-                        <button
-                            onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
-                            className="ml-2 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-xs sm:text-sm font-semibold text-gray-700 transition-all duration-200"
-                        >
-                            {lang === 'fr' ? 'EN' : 'FR'}
-                        </button>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={() => setMenuOpen(!menuOpen)}
-                            className="ml-2 flex lg:hidden items-center px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            aria-label="Toggle menu"
-                        >
-                            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Mobile Menu */}
-                {menuOpen && (
-                    <div className="lg:hidden mt-3 sm:mt-4 pb-3 sm:pb-4 border-t border-gray-200 animate-fade-in">
-                        {/* Mobile Search Button */}
-                        <div className="mt-3 sm:mt-4 mb-3 sm:mb-4">
-                            <button
-                                onClick={openSearchModal}
-                                className="w-full relative px-3 sm:px-4 py-2 pl-12 sm:pl-14 pr-3 sm:pr-4 text-xs sm:text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-left text-gray-500 hover:border-gray-400 transition-all duration-200 flex items-center"
-                            >
-                                <span className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 flex items-center">
-                                    <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </span>
-                                <span className="pl-6 sm:pl-7 text-xs sm:text-sm">{lang === 'fr' ? 'Rechercher...' : 'Search...'}</span>
+                        {/* Dropdown for Shop */}
+                        <div className="relative group">
+                            <button className="flex items-center gap-1 hover:text-blue-600 transition py-4">
+                                Collections <ChevronDown size={14} />
                             </button>
-                        </div>
-
-                        {/* Mobile Navigation Links */}
-                        <div className="flex flex-col gap-1 sm:gap-2">
-                            {links.map(link => (
-                                link.id === 'hero' ? (
-                                    <Link
-                                        key={link.id}
-                                        to="/"
-                                        className="text-gray-700 hover:text-primary-red transition-all duration-300 font-medium px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-50 text-sm sm:text-base"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        {link[lang]}
-                                    </Link>
-                                ) : (
-                                    <a
-                                        key={link.id}
-                                        href={`#${link.id}`}
-                                        className="text-gray-700 hover:text-primary-red transition-all duration-300 font-medium px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-50 text-sm sm:text-base"
-                                        onClick={handleSectionNav(link.id)}
-                                    >
-                                        {link[lang]}
-                                    </a>
-                                )
-                            ))}
-                        </div>
-                    </div>
-                )}
-            </nav>
-
-            {/* Search Modal */}
-            {showSearchModal && (
-                <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 p-4 pt-20">
-                    <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[80vh] overflow-y-auto">
-                        <div className="p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-xl font-semibold text-gray-900">
-                                    {lang === 'fr' ? 'Recherche Avancée' : 'Advanced Search'}
-                                </h2>
-                                <button
-                                    onClick={closeSearchModal}
-                                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                                >
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
+                            {/* Dropdown Menu */}
+                            <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                <Link to="/shop" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Tout Voir</Link>
+                                <Link to="/shop?category=montres" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Montres</Link>
+                                <Link to="/shop?category=chapeaux" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Chapeaux</Link>
                             </div>
-
-                            <AdvancedSearch
-                                lang={lang}
-                                onSearchResults={handleSearchResults}
-                                onClose={closeSearchModal}
-                            />
                         </div>
+
+                        <Link to="#" className="hover:text-blue-600 transition">À Propos</Link>
+                    </div>
+
+                    {/* 3. Right Icons */}
+                    <div className="flex items-center space-x-6">
+                        <Link to="/cart" className="relative group">
+                            <ShoppingBag size={24} className="text-gray-800 group-hover:text-blue-600 transition" />
+                            {cartItemCount > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                                    {cartItemCount}
+                                </span>
+                            )}
+                        </Link>
+
+                        {/* Mobile Menu Trigger */}
+                        <button onClick={() => setIsOpen(true)} className="md:hidden text-gray-800">
+                            <Menu size={28} />
+                        </button>
                     </div>
                 </div>
-            )}
-        </>
-    );
-};
+            </div>
 
-export default Navigation; 
+            {/* 4. Mobile Side Drawer (Better than simple dropdown) */}
+            <div className={`fixed inset-0 z-50 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/50" onClick={() => setIsOpen(false)}></div>
+
+                {/* Content */}
+                <div className="absolute right-0 top-0 h-full w-[80%] bg-white shadow-2xl p-6">
+                    <div className="flex justify-between items-center mb-10">
+                        <span className="text-xl font-bold">Menu</span>
+                        <button onClick={() => setIsOpen(false)}><X size={28} /></button>
+                    </div>
+
+                    <div className="flex flex-col space-y-6 text-lg font-bold uppercase tracking-wider">
+                        <Link to="/" onClick={() => setIsOpen(false)} className="border-b border-gray-100 pb-2">Accueil</Link>
+
+                        {/* Mobile Dropdown Logic */}
+                        <div className="pb-2 border-b border-gray-100">
+                            <button onClick={() => setIsShopOpen(!isShopOpen)} className="flex justify-between w-full items-center">
+                                Collections <ChevronDown size={16} className={`transform transition ${isShopOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            {isShopOpen && (
+                                <div className="flex flex-col space-y-4 mt-4 pl-4 text-sm text-gray-600 normal-case font-medium">
+                                    <Link to="/shop" onClick={() => setIsOpen(false)}>Tout voir</Link>
+                                    <Link to="/shop?category=montres" onClick={() => setIsOpen(false)}>Nos Montres</Link>
+                                    <Link to="/shop?category=chapeaux" onClick={() => setIsOpen(false)}>Nos Casquettes</Link>
+                                </div>
+                            )}
+                        </div>
+
+                        <Link to="#" onClick={() => setIsOpen(false)} className="border-b border-gray-100 pb-2">À Propos</Link>
+                        <Link to="/admin/login" onClick={() => setIsOpen(false)} className="text-xs text-gray-400 mt-auto pt-10">Admin Login</Link>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    )
+}
+
+export default Navigation
