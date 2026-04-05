@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../../supabaseClient'
 import { ArrowLeft, Loader } from 'lucide-react'
+import { useNotification } from '../../context/NotificationContext'
 
 const EditProduct = () => {
+    const { showToast } = useNotification()
     const { id } = useParams()
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true)
@@ -27,16 +29,24 @@ const EditProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setUpdating(true)
-        const { error } = await supabase.from('products').update({
-            name_fr: formData.name_fr,
-            price: formData.price,
-            stock_count: formData.stock_count,
-            description_fr: formData.description_fr,
-            is_featured: formData.is_featured
-        }).eq('id', id)
+        try {
+            const { error } = await supabase.from('products').update({
+                name_fr: formData.name_fr,
+                price: formData.price,
+                stock_count: formData.stock_count,
+                description_fr: formData.description_fr,
+                is_featured: formData.is_featured
+            }).eq('id', id)
 
-        if (!error) navigate('/admin/products')
-        setUpdating(false)
+            if (error) throw error
+            
+            showToast('Produit mis à jour !')
+            navigate('/admin/products')
+        } catch (err) {
+            showToast('Erreur lors de la mise à jour', 'error')
+        } finally {
+            setUpdating(false)
+        }
     }
 
     if (loading) return <div>Chargement...</div>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { supabase } from '../../supabaseClient'
 import { useNavigate } from 'react-router-dom'
+import { useNotification } from '../../context/NotificationContext'
 
 const Login = () => {
+    const { showToast } = useNotification()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
@@ -23,9 +25,11 @@ const Login = () => {
             if (error) throw error
 
             // Login Successful -> Go to Dashboard
+            showToast('Connexion réussie !')
             navigate('/admin/dashboard')
         } catch (error) {
             setError(error.message)
+            showToast('Erreur de connexion : ' + error.message, 'error')
         } finally {
             setLoading(false)
         }

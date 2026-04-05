@@ -3,8 +3,10 @@ import { useCart } from '../context/CartContext'
 import { supabase } from '../supabaseClient'
 import { Trash2, MessageCircle, Loader, MapPin, Phone, User } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useNotification } from '../context/NotificationContext'
 
 const Cart = () => {
+    const { showToast } = useNotification()
     const { cart, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart()
     const navigate = useNavigate()
 
@@ -24,7 +26,7 @@ const Cart = () => {
 
         // 1. Validation
         if (!formData.name || !formData.phone || !formData.address) {
-            alert("Veuillez remplir toutes les informations de livraison.")
+            showToast("Veuillez remplir toutes les informations de livraison.", "error")
             return
         }
 
@@ -80,11 +82,12 @@ const Cart = () => {
             // 5. Cleanup
             clearCart()
             window.open(url, '_blank')
+            showToast('Commande enregistrée ! Redirection vers WhatsApp...')
             navigate('/') // Go back home
 
         } catch (error) {
             console.error("Checkout Error:", error)
-            alert("Une erreur est survenue. Veuillez réessayer.")
+            showToast("Une erreur est survenue. Veuillez réessayer.", "error")
         } finally {
             setLoading(false)
         }

@@ -26,6 +26,11 @@ const Shop = () => {
 
                 if (categoryData) {
                     query = query.eq('category_id', categoryData.id)
+                } else {
+                    // Category not found in DB - show nothing instead of "All"
+                    setProducts([])
+                    setLoading(false)
+                    return
                 }
             }
             const { data, error } = await query.order('created_at', { ascending: false })
@@ -55,6 +60,10 @@ const Shop = () => {
                     <Link to="/shop?category=montres"
                         className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'montres' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>
                         Montres
+                    </Link>
+                    <Link to="/shop?category=lunettes"
+                        className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'lunettes' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>
+                        Lunettes
                     </Link>
                     <Link to="/shop?category=chapeaux"
                         className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'chapeaux' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>

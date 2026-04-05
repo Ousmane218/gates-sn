@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../../supabaseClient'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Upload, Loader } from 'lucide-react'
+import { useNotification } from '../../context/NotificationContext'
 
 const AddProduct = () => {
+    const { showToast } = useNotification()
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [categories, setCategories] = useState([])
@@ -54,7 +56,7 @@ const AddProduct = () => {
     // 4. Submit Form
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!imageFile) return alert("Veuillez sélectionner une image.")
+        if (!imageFile) return showToast("Veuillez sélectionner une image.", "error")
 
         setLoading(true)
         try {
@@ -89,10 +91,11 @@ const AddProduct = () => {
             if (insertError) throw insertError
 
             // Success!
+            showToast('Produit ajouté avec succès !')
             navigate('/admin/dashboard')
         } catch (error) {
             console.error('Error:', error)
-            alert("Erreur lors de la création: " + error.message)
+            showToast("Erreur lors de la création: " + error.message, "error")
         } finally {
             setLoading(false)
         }

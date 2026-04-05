@@ -31,34 +31,40 @@ const Home = () => {
         <div>
             <HeroSlider />
 
-            {/* 1. CATEGORIES (Fixed Layout) */}
+            {/* 1. CATEGORIES (3-Column Layout) */}
             <section className="py-10 md:py-16">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                         {/* Watches Banner */}
-                        <div className="relative h-64 md:h-[500px] bg-gray-100 group overflow-hidden">
+                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
                             <img src="/products/watches/black_arabic_stainless.jpg" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-
-                            {/* NEW: Stronger Gradient Overlay for Text Readability */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
-
                             <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
-                                <h3 className="text-3xl md:text-5xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Montres</h3>
+                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Montres</h3>
                                 <Link to="/shop?category=montres" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
                                     Découvrir
                                 </Link>
                             </div>
                         </div>
 
-                        {/* Hats Banner */}
-                        <div className="relative h-64 md:h-[500px] bg-gray-100 group overflow-hidden">
-                            <img src="/products/hats/blue_tony_chopper_1.jpg" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-
-                            {/* NEW: Stronger Gradient Overlay */}
+                        {/* Glasses Banner - NEW */}
+                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
-
                             <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
-                                <h3 className="text-3xl md:text-5xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Chapeaux</h3>
+                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Lunettes</h3>
+                                <Link to="/shop?category=lunettes" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
+                                    Découvrir
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Hats Banner */}
+                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
+                            <img src="/products/hats/blue_tony_chopper_1.jpg" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
+                            <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
+                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Chapeaux</h3>
                                 <Link to="/shop?category=chapeaux" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
                                     Découvrir
                                 </Link>

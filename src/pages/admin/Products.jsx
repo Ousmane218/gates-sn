@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../../supabaseClient'
 import { Link, useNavigate } from 'react-router-dom'
 import { Plus, Trash2, Edit, Search } from 'lucide-react'
+import { useNotification } from '../../context/NotificationContext'
 
 const Products = () => {
+    const { confirm, showToast } = useNotification()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
@@ -20,9 +22,21 @@ const Products = () => {
     }
 
     const handleDelete = async (id) => {
-        if (!window.confirm("Supprimer ce produit ?")) return
-        await supabase.from('products').delete().eq('id', id)
-        setProducts(products.filter(p => p.id !== id))
+        confirm({
+            title: 'Supprimer le produit ?',
+            message: 'Cette action est irréversible. Le produit sera définitivement supprimé de votre inventaire.',
+            confirmText: 'Supprimer',
+            onConfirm: async () => {
+                try {
+                    const { error } = await supabase.from('products').delete().eq('id', id)
+                    if (error) throw error
+                    setProducts(products.filter(p => p.id !== id))
+                    showToast('Produit supprimé avec succès !')
+                } catch (err) {
+                    showToast('Erreur lors de la suppression', 'error')
+                }
+            }
+        })
     }
 
     const filteredProducts = products.filter(p =>

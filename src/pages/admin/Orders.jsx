@@ -3,6 +3,7 @@ import { supabase } from '../../supabaseClient'
 import { CheckCircle, Clock, Package, ChevronDown, ChevronUp, Check } from 'lucide-react'
 
 const Orders = () => {
+    const { confirm, showToast } = useNotification()
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
     const [expandedOrder, setExpandedOrder] = useState(null)
@@ -21,21 +22,29 @@ const Orders = () => {
         setLoading(false)
     }
 
-    const markAsDelivered = async (id) => {
-        if (!window.confirm("Confirmer la livraison de cette commande ?")) return
+    const markAsDelivered = (id) => {
+        confirm({
+            title: 'Confirmer la livraison ?',
+            message: 'Voulez-vous marquer cette commande comme livrée ? Cela mettra à jour les statistiques de vente.',
+            confirmText: 'Confirmer',
+            onConfirm: async () => {
+                try {
+                    // 1. Update Database
+                    const { error } = await supabase
+                        .from('orders')
+                        .update({ status: 'delivered' })
+                        .eq('id', id)
 
-        // 1. Update Database
-        const { error } = await supabase
-            .from('orders')
-            .update({ status: 'delivered' })
-            .eq('id', id)
+                    if (error) throw error
 
-        // 2. Update UI
-        if (!error) {
-            setOrders(orders.map(o => o.id === id ? { ...o, status: 'delivered' } : o))
-        } else {
-            alert("Erreur lors de la mise à jour. Vérifiez votre connexion.")
-        }
+                    // 2. Update UI
+                    setOrders(orders.map(o => o.id === id ? { ...o, status: 'delivered' } : o))
+                    showToast('Commande marquée comme livrée !')
+                } catch (err) {
+                    showToast('Erreur lors de la mise à jour. Vérifiez votre connexion.', 'error')
+                }
+            }
+        })
     }
 
     // Stats
