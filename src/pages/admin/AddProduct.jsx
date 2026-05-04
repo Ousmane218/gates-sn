@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../../supabaseClient'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Upload, Loader } from 'lucide-react'
+import { ArrowLeft, Upload, Loader, X } from 'lucide-react'
 import { useNotification } from '../../context/NotificationContext'
 
 const AddProduct = () => {
@@ -19,8 +19,8 @@ const AddProduct = () => {
         category_id: '',
         is_featured: false
     })
-    const [imageFile, setImageFile] = useState(null)
-    const [imagePreview, setImagePreview] = useState(null)
+    const [imageFiles, setImageFiles] = useState([])
+    const [imagePreviews, setImagePreviews] = useState([])
 
     // 1. Fetch Categories on load
     useEffect(() => {
@@ -46,46 +46,59 @@ const AddProduct = () => {
 
     // 3. Handle Image Selection
     const handleImageChange = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            setImageFile(file)
-            setImagePreview(URL.createObjectURL(file))
+        const files = Array.from(e.target.files)
+        if (files.length > 0) {
+            setImageFiles(prev => [...prev, ...files])
+            const newPreviews = files.map(file => URL.createObjectURL(file))
+            setImagePreviews(prev => [...prev, ...newPreviews])
         }
+    }
+
+    const removeImage = (indexToRemove) => {
+        setImageFiles(prev => prev.filter((_, index) => index !== indexToRemove))
+        setImagePreviews(prev => prev.filter((_, index) => index !== indexToRemove))
     }
 
     // 4. Submit Form
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!imageFile) return showToast("Veuillez sélectionner une image.", "error")
+        if (imageFiles.length === 0) return showToast("Veuillez sélectionner au moins une image.", "error")
 
         setLoading(true)
         try {
-            // A. Upload Image
-            const fileExt = imageFile.name.split('.').pop()
-            const fileName = `${Date.now()}.${fileExt}` // Unique name
-            const { error: uploadError } = await supabase.storage
-                .from('products')
-                .upload(fileName, imageFile)
+            // A. Upload All Images
+            const uploadedUrls = []
+            
+            for (const file of imageFiles) {
+                const fileExt = file.name.split('.').pop()
+                const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${fileExt}`
+                
+                const { error: uploadError } = await supabase.storage
+                    .from('products')
+                    .upload(fileName, file)
 
-            if (uploadError) throw uploadError
+                if (uploadError) throw uploadError
 
-            // B. Get Public URL
-            const { data: { publicUrl } } = supabase.storage
-                .from('products')
-                .getPublicUrl(fileName)
+                const { data: { publicUrl } } = supabase.storage
+                    .from('products')
+                    .getPublicUrl(fileName)
+                    
+                uploadedUrls.push(publicUrl)
+            }
 
             // C. Insert Product into Database
             const { error: insertError } = await supabase
                 .from('products')
                 .insert([{
                     name_fr: formData.name_fr,
-                    name_en: formData.name_fr, // Just copy FR for now to satisfy DB
+                    name_en: formData.name_fr,
                     description_fr: formData.description_fr,
                     price: parseFloat(formData.price),
                     category_id: formData.category_id,
-                    image_url: publicUrl,
+                    image_url: uploadedUrls[0], // Primary image
+                    additional_images: uploadedUrls,   // Array of all images
                     is_featured: formData.is_featured,
-                    stock_count: 10 // Default stock
+                    stock_count: 10
                 }])
 
             if (insertError) throw insertError
@@ -117,22 +130,45 @@ const AddProduct = () => {
 
                     {/* Image Upload */}
                     <div>
-                        <label className="block text-sm font-bold mb-2">Image du produit</label>
+                        <label className="block text-sm font-bold mb-2">Images du produit (La première sera l'image principale)</label>
+                        
+                        {/* Previews Grid */}
+                        {imagePreviews.length > 0 && (
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                                {imagePreviews.map((preview, index) => (
+                                    <div key={index} className="relative group rounded-xl overflow-hidden border border-gray-200 aspect-square">
+                                        <img src={preview} alt={`Preview ${index}`} className="w-full h-full object-cover" />
+                                        <button
+                                            type="button"
+                                            onClick={() => removeImage(index)}
+                                            className="absolute top-2 right-2 p-1 bg-white/90 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition opacity-0 group-hover:opacity-100 shadow-sm"
+                                        >
+                                            <X size={16} />
+                                        </button>
+                                        {index === 0 && (
+                                            <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-[10px] text-center py-1 font-bold">
+                                                PRINCIPALE
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Upload Dropzone */}
                         <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition cursor-pointer relative">
                             <input
                                 type="file"
                                 accept="image/*"
+                                multiple
                                 onChange={handleImageChange}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             />
-                            {imagePreview ? (
-                                <img src={imagePreview} alt="Preview" className="h-48 mx-auto object-contain" />
-                            ) : (
-                                <div className="text-gray-400">
-                                    <Upload size={40} className="mx-auto mb-2" />
-                                    <p>Cliquez pour ajouter une photo</p>
-                                </div>
-                            )}
+                            <div className="text-gray-400">
+                                <Upload size={40} className="mx-auto mb-2" />
+                                <p>Cliquez pour ajouter des photos</p>
+                                <p className="text-xs mt-1">Vous pouvez sélectionner plusieurs fichiers</p>
+                            </div>
                         </div>
                     </div>
 

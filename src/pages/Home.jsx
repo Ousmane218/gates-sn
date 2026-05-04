@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient'
 import HeroSlider from '../components/HeroSlider'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import ProductImageCarousel from '../components/ProductImageCarousel'
 
 const Home = () => {
     const [featuredProducts, setFeaturedProducts] = useState([])
@@ -85,8 +86,8 @@ const Home = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
                         {featuredProducts.map((product) => (
                             <Link key={product.id} to={`/product/${product.id}`} className="mathydy-card group">
-                                <div className="mathydy-card-image">
-                                    <img src={product.image_url} alt={product.name_fr} className="w-full h-full object-cover" />
+                                <div className="mathydy-card-image relative aspect-[4/5] overflow-hidden">
+                                    <ProductImageCarousel product={product} />
                                     {/* Hover Overlay */}
                                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300" />
                                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition duration-300 bg-white/90 backdrop-blur-sm text-center">

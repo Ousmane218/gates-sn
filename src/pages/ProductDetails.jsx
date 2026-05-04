@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../supabaseClient'
 import { useCart } from '../context/CartContext'
-import { Star, Truck, ShieldCheck, ArrowLeft, MessageCircle } from 'lucide-react'
+import { Star, Truck, ShieldCheck, ArrowLeft, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const ProductDetails = () => {
     const { id } = useParams() // Get ID from URL
@@ -45,12 +45,22 @@ const ProductDetails = () => {
         window.open(url, '_blank');
     }
 
-    // Combine main image + additional images into one array for the gallery
-    const allImages = [product.image_url, ...(product.additional_images || [])]
+    // Use additional_images if available (new multiple images format), otherwise fallback to single image_url
+    const allImages = product.additional_images && product.additional_images.length > 0 
+        ? product.additional_images 
+        : [product.image_url]
+
+    const nextImage = () => {
+        setSelectedImage((prev) => (prev === allImages.length - 1 ? 0 : prev + 1))
+    }
+
+    const prevImage = () => {
+        setSelectedImage((prev) => (prev === 0 ? allImages.length - 1 : prev - 1))
+    }
 
     return (
         <div className="container mx-auto px-4 py-10">
-            <button onClick={() => navigate(-1)} className="flex items-center text-gray-500 hover:text-black mb-8">
+            <button onClick={() => navigate(-1)} className="flex items-center text-gray-500 hover:text-black mb-8 transition">
                 <ArrowLeft size={20} className="mr-2" /> Retour
             </button>
 
@@ -58,26 +68,46 @@ const ProductDetails = () => {
 
                 {/* LEFT: Image Gallery */}
                 <div>
-                    <div className="h-[400px] md:h-[500px] bg-gray-100 rounded-2xl overflow-hidden mb-4">
+                    <div className="h-[400px] md:h-[500px] bg-gray-50 rounded-none overflow-hidden mb-4 relative group">
                         <img
                             src={allImages[selectedImage]}
                             alt={product.name_fr}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition duration-500"
                         />
+                        {/* Carousel Arrows */}
+                        {allImages.length > 1 && (
+                            <>
+                                <button
+                                    onClick={prevImage}
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/80 hover:bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md text-black"
+                                >
+                                    <ChevronLeft size={24} />
+                                </button>
+                                <button
+                                    onClick={nextImage}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/80 hover:bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md text-black"
+                                >
+                                    <ChevronRight size={24} />
+                                </button>
+                            </>
+                        )}
                     </div>
                     {/* Thumbnails */}
-                    <div className="flex gap-4 overflow-x-auto pb-2">
-                        {allImages.map((img, idx) => (
-                            <button
-                                key={idx}
-                                onClick={() => setSelectedImage(idx)}
-                                className={`w-20 h-20 rounded-lg overflow-hidden border-2 flex-shrink-0 ${selectedImage === idx ? 'border-blue-600' : 'border-transparent'
+                    {allImages.length > 1 && (
+                        <div className="flex gap-4 overflow-x-auto pb-2">
+                            {allImages.map((img, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setSelectedImage(idx)}
+                                    className={`w-20 h-24 overflow-hidden border-2 flex-shrink-0 transition-all duration-300 ${
+                                        selectedImage === idx ? 'border-black opacity-100' : 'border-transparent opacity-60 hover:opacity-100'
                                     }`}
-                            >
-                                <img src={img} className="w-full h-full object-cover" />
-                            </button>
-                        ))}
-                    </div>
+                                >
+                                    <img src={img} className="w-full h-full object-cover" />
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* RIGHT: Product Info */}

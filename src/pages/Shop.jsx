@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { supabase } from '../supabaseClient'
+import ProductImageCarousel from '../components/ProductImageCarousel'
 
 const Shop = () => {
     const [products, setProducts] = useState([])
@@ -90,11 +91,7 @@ const Shop = () => {
 
                             {/* Image Container - Aspect Ratio 4:5 (Taller) */}
                             <div className="relative w-full aspect-[4/5] bg-gray-50 overflow-hidden mb-4">
-                                <img
-                                    src={product.image_url}
-                                    alt={product.name_fr}
-                                    className="w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-105"
-                                />
+                                <ProductImageCarousel product={product} />
 
                                 {/* Sold Out Badge */}
                                 {product.stock_count === 0 && (
