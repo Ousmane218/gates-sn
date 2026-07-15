@@ -7,20 +7,21 @@ import ProductImageCarousel from '../components/ProductImageCarousel'
 
 const Home = () => {
     const [featuredProducts, setFeaturedProducts] = useState([])
+    const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetchFeaturedProducts()
+        fetchData()
     }, [])
 
-    const fetchFeaturedProducts = async () => {
+    const fetchData = async () => {
         try {
-            const { data } = await supabase
-                .from('products')
-                .select('*')
-                .eq('is_featured', true)
-                .limit(8) // Show 8 items like Mathydy
-            setFeaturedProducts(data || [])
+            const [prodRes, catRes] = await Promise.all([
+                supabase.from('products').select('*').eq('is_featured', true).limit(8),
+                supabase.from('categories').select('*').order('created_at', { ascending: true })
+            ])
+            setFeaturedProducts(prodRes.data || [])
+            setCategories(catRes.data || [])
         } catch (error) {
             console.error(error)
         } finally {
@@ -36,53 +37,22 @@ const Home = () => {
             <section className="py-10 md:py-16">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                        {/* Montre Arabe Banner */}
-                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
-                            <img src="/products/watches/black_arabic_stainless.jpg" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
-                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Montre Arabe</h3>
-                                <Link to="/shop?category=montre-arabe" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
-                                    Découvrir
-                                </Link>
+                        {categories.map((category) => (
+                            <div key={category.id} className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
+                                <img 
+                                    src={category.image_url || 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&q=80&w=800'} 
+                                    alt={category.name}
+                                    className="w-full h-full object-cover transition duration-700 group-hover:scale-105" 
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
+                                <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center z-10">
+                                    <h3 className="text-xl md:text-3xl font-light tracking-[0.2em] md:tracking-[0.3em] mb-4 uppercase drop-shadow-lg">{category.name}</h3>
+                                    <Link to={`/shop?category=${category.slug}`} className="bg-white text-black px-6 md:px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300 shadow-lg">
+                                        Découvrir
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-
-                        {/* Montre Poedagar Banner */}
-                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
-                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Montre Poedagar</h3>
-                                <Link to="/shop?category=montre-poedagar" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
-                                    Découvrir
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Glasses Banner - NEW */}
-                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
-                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Lunettes</h3>
-                                <Link to="/shop?category=lunettes" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
-                                    Découvrir
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Hats Banner */}
-                        <div className="relative h-64 md:h-[450px] bg-gray-100 group overflow-hidden">
-                            <img src="/products/hats/blue_tony_chopper_1.jpg" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition" />
-                            <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 text-white p-4 text-center">
-                                <h3 className="text-2xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase drop-shadow-lg">Chapeaux</h3>
-                                <Link to="/shop?category=chapeaux" className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition duration-300">
-                                    Découvrir
-                                </Link>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>
