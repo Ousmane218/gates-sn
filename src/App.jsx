@@ -18,6 +18,7 @@ import AddProduct from './pages/admin/AddProduct'
 import Orders from './pages/admin/Orders'
 import EditProduct from './pages/admin/EditProduct'
 import Products from './pages/admin/Products'
+import Categories from './pages/admin/Categories'
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
       }>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
+        <Route path="categories" element={<Categories />} />
         <Route path="orders" element={<Orders />} />
         <Route path="products/new" element={<AddProduct />} />
         <Route path="products/edit/:id" element={<EditProduct />} />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, ShoppingCart, Package, LogOut, Menu, X } from 'lucide-react'
+import { LayoutDashboard, ShoppingCart, Package, LogOut, Menu, X, Tags } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const AdminLayout = () => {
@@ -46,6 +46,13 @@ const AdminLayout = () => {
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${isActive('/admin/products')}`}
                 >
                     <Package size={20} /> Produits
+                </Link>
+                <Link
+                    to="/admin/categories"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${isActive('/admin/categories')}`}
+                >
+                    <Tags size={20} /> Catégories
                 </Link>
                 <Link
                     to="/admin/orders"

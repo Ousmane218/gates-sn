@@ -11,6 +11,7 @@ const EditProduct = () => {
     const [loading, setLoading] = useState(true)
     const [updating, setUpdating] = useState(false)
     const [formData, setFormData] = useState({})
+    const [categories, setCategories] = useState([])
     
     // Image state
     const [existingImages, setExistingImages] = useState([]) // URLs already in DB
@@ -18,6 +19,11 @@ const EditProduct = () => {
     const [newImagePreviews, setNewImagePreviews] = useState([]) // Previews for new files
 
     useEffect(() => {
+        const fetchCategories = async () => {
+            const { data } = await supabase.from('categories').select('*')
+            if (data) setCategories(data)
+        }
+
         const fetchProduct = async () => {
             const { data } = await supabase.from('products').select('*').eq('id', id).single()
             if (data) {
@@ -33,6 +39,7 @@ const EditProduct = () => {
             }
             setLoading(false)
         }
+        fetchCategories()
         fetchProduct()
     }, [id])
 
@@ -95,6 +102,7 @@ const EditProduct = () => {
                 name_fr: formData.name_fr,
                 price: parseFloat(formData.price),
                 stock_count: parseInt(formData.stock_count),
+                category_id: formData.category_id,
                 description_fr: formData.description_fr,
                 is_featured: formData.is_featured,
                 image_url: allImages[0], // Primary image
@@ -188,7 +196,7 @@ const EditProduct = () => {
                     <label className="block text-sm font-bold mb-1">Nom</label>
                     <input name="name_fr" value={formData.name_fr || ''} onChange={handleChange} className="w-full border p-3 rounded" />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                     <div>
                         <label className="block text-sm font-bold mb-1">Prix</label>
                         <input name="price" type="number" value={formData.price || ''} onChange={handleChange} className="w-full border p-3 rounded" />
@@ -196,6 +204,15 @@ const EditProduct = () => {
                     <div>
                         <label className="block text-sm font-bold mb-1">Stock</label>
                         <input name="stock_count" type="number" value={formData.stock_count || ''} onChange={handleChange} className="w-full border p-3 rounded" />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-bold mb-1">Catégorie</label>
+                        <select name="category_id" value={formData.category_id || ''} onChange={handleChange} className="w-full border p-3 rounded bg-white">
+                            <option value="">Sélectionner</option>
+                            {categories.map(cat => (
+                                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            ))}
+                        </select>
                     </div>
                 </div>
                 <div>

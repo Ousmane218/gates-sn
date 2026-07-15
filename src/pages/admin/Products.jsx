@@ -16,7 +16,7 @@ const Products = () => {
     }, [])
 
     const fetchProducts = async () => {
-        const { data } = await supabase.from('products').select('*').order('created_at', { ascending: false })
+        const { data } = await supabase.from('products').select('*, categories(name)').order('created_at', { ascending: false })
         setProducts(data || [])
         setLoading(false)
     }
@@ -92,7 +92,7 @@ const Products = () => {
                                         </span>
                                     </td>
                                     <td className="p-4 text-xs text-gray-500 uppercase">
-                                        {p.category_id.includes('a0ee') ? 'Montre' : 'Chapeau'}
+                                        {p.categories?.name || 'Inconnu'}
                                     </td>
                                     <td className="p-4 text-right space-x-2">
                                         <button onClick={() => navigate(`/admin/products/edit/${p.id}`)} className="text-blue-600 hover:bg-blue-50 p-2 rounded-full transition"><Edit size={18} /></button>

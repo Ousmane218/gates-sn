@@ -58,9 +58,13 @@ const Shop = () => {
                         className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${!selectedCategorySlug ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>
                         Tout
                     </Link>
-                    <Link to="/shop?category=montres"
-                        className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'montres' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>
-                        Montres
+                    <Link to="/shop?category=montre-arabe"
+                        className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'montre-arabe' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>
+                        Montre Arabe
+                    </Link>
+                    <Link to="/shop?category=montre-poedagar"
+                        className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'montre-poedagar' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>
+                        Montre Poedagar
                     </Link>
                     <Link to="/shop?category=lunettes"
                         className={`text-xs font-bold uppercase tracking-widest px-6 py-3 border transition-all duration-300 ${selectedCategorySlug === 'lunettes' ? 'bg-black text-white border-black' : 'bg-white text-gray-500 border-gray-200 hover:border-black hover:text-black'}`}>

@@ -34,7 +34,8 @@ const Navigation = () => {
                             {/* Dropdown Menu */}
                             <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                                 <Link to="/shop" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Tout Voir</Link>
-                                <Link to="/shop?category=montres" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Montres</Link>
+                                <Link to="/shop?category=montre-arabe" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Montre Arabe</Link>
+                                <Link to="/shop?category=montre-poedagar" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Montre Poedagar</Link>
                                 <Link to="/shop?category=lunettes" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Lunettes</Link>
                                 <Link to="/shop?category=chapeaux" className="block px-6 py-3 hover:bg-gray-50 text-gray-600 hover:text-black">Chapeaux</Link>
                             </div>
@@ -85,7 +86,8 @@ const Navigation = () => {
                             {isShopOpen && (
                                 <div className="flex flex-col space-y-4 mt-4 pl-4 text-sm text-gray-600 normal-case font-medium">
                                     <Link to="/shop" onClick={() => setIsOpen(false)}>Tout voir</Link>
-                                    <Link to="/shop?category=montres" onClick={() => setIsOpen(false)}>Nos Montres</Link>
+                                    <Link to="/shop?category=montre-arabe" onClick={() => setIsOpen(false)}>Montre Arabe</Link>
+                                    <Link to="/shop?category=montre-poedagar" onClick={() => setIsOpen(false)}>Montre Poedagar</Link>
                                     <Link to="/shop?category=lunettes" onClick={() => setIsOpen(false)}>Nos Lunettes</Link>
                                     <Link to="/shop?category=chapeaux" onClick={() => setIsOpen(false)}>Nos Casquettes</Link>
                                 </div>
